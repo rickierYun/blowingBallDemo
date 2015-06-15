@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="collisonView" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,8 +16,81 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wb6-fk-zgH">
+                                <rect key="frame" x="289" y="165" width="33" height="30"/>
+                                <state key="normal" title="ball1">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="COa-Sf-R86">
+                                <rect key="frame" x="245" y="144" width="33" height="30"/>
+                                <state key="normal" title="ball2">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2f-WZ-IyL">
+                                <rect key="frame" x="320" y="144" width="33" height="30"/>
+                                <state key="normal" title="ball3">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGj-OB-faQ">
+                                <rect key="frame" x="229" y="106" width="33" height="30"/>
+                                <state key="normal" title="ball4">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whg-OP-ZQS">
+                                <rect key="frame" x="283" y="106" width="33" height="30"/>
+                                <state key="normal" title="ball5">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7d9-Bv-Bjw">
+                                <rect key="frame" x="337" y="106" width="33" height="30"/>
+                                <state key="normal" title="ball6">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXm-j3-SSc">
+                                <rect key="frame" x="16" y="480" width="568" height="30"/>
+                                <state key="normal" title="push ball">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="push:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hdG-7A-vVH"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wb6-fk-zgH" firstAttribute="centerX" secondItem="lXm-j3-SSc" secondAttribute="centerX" constant="6" id="0jM-Yt-Myq"/>
+                            <constraint firstItem="7d9-Bv-Bjw" firstAttribute="leading" secondItem="s2f-WZ-IyL" secondAttribute="trailing" constant="-16" id="6ty-IE-S74"/>
+                            <constraint firstItem="wb6-fk-zgH" firstAttribute="centerY" secondItem="COa-Sf-R86" secondAttribute="centerY" constant="21" id="DLH-Zf-Cah"/>
+                            <constraint firstItem="MGj-OB-faQ" firstAttribute="centerX" secondItem="COa-Sf-R86" secondAttribute="centerX" constant="-16" id="DQe-hb-eEH"/>
+                            <constraint firstItem="s2f-WZ-IyL" firstAttribute="leading" secondItem="wb6-fk-zgH" secondAttribute="trailing" constant="-2" id="EvM-Hk-C0x"/>
+                            <constraint firstItem="COa-Sf-R86" firstAttribute="top" secondItem="MGj-OB-faQ" secondAttribute="bottom" constant="8" id="F5o-IE-XFK"/>
+                            <constraint firstItem="wb6-fk-zgH" firstAttribute="centerX" secondItem="whg-OP-ZQS" secondAttribute="centerX" constant="6" id="J68-aI-Gn2"/>
+                            <constraint firstItem="wb6-fk-zgH" firstAttribute="centerY" secondItem="s2f-WZ-IyL" secondAttribute="centerY" constant="21" id="K2h-q1-OrF"/>
+                            <constraint firstItem="7d9-Bv-Bjw" firstAttribute="centerY" secondItem="s2f-WZ-IyL" secondAttribute="centerY" constant="-38" id="fQS-hv-apF"/>
+                            <constraint firstItem="wb6-fk-zgH" firstAttribute="top" secondItem="whg-OP-ZQS" secondAttribute="bottom" constant="29" id="h3g-41-5hj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lXm-j3-SSc" secondAttribute="trailing" id="hQc-Qq-0ZI"/>
+                            <constraint firstItem="wb6-fk-zgH" firstAttribute="leading" secondItem="COa-Sf-R86" secondAttribute="trailing" constant="11" id="imd-V6-5wI"/>
+                            <constraint firstItem="lXm-j3-SSc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="jNg-VI-EQb"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lXm-j3-SSc" secondAttribute="bottom" constant="90" id="nZI-Dd-Oyb"/>
+                            <constraint firstItem="lXm-j3-SSc" firstAttribute="top" secondItem="wb6-fk-zgH" secondAttribute="bottom" constant="285" id="sw8-eT-2SR"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="ball1" destination="wb6-fk-zgH" id="rru-Im-gmf"/>
+                        <outlet property="ball2" destination="COa-Sf-R86" id="yWO-qk-3E1"/>
+                        <outlet property="ball3" destination="s2f-WZ-IyL" id="lBc-62-fbp"/>
+                        <outlet property="ball4" destination="MGj-OB-faQ" id="yX7-jN-icU"/>
+                        <outlet property="ball5" destination="whg-OP-ZQS" id="BvG-rR-4ho"/>
+                        <outlet property="ball6" destination="7d9-Bv-Bjw" id="9bH-bR-yL6"/>
+                        <outlet property="pushBall" destination="lXm-j3-SSc" id="RCu-Zy-tvW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
