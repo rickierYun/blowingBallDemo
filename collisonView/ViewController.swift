@@ -42,6 +42,10 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate{
         
     }
 
+    @IBAction func SetAngle(gesture: UISwipeGestureRecognizer) {
+        let direction : UISwipeGestureRecognizerDirection = gesture.direction
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         boundaryWithIdentifierRight.backgroundColor = UIColor.redColor()
