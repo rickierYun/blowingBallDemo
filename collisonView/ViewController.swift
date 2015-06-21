@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController,UICollisionBehaviorDelegate{
+class ViewController: UIViewController,UICollisionBehaviorDelegate {
 
     
     @IBOutlet weak var ball6: UIButton!
@@ -53,7 +53,8 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate{
         
         view.addSubview(boundaryWithIdentifierRight)
         view.addSubview(boundaryWithIdentifierLeft)
-    
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 

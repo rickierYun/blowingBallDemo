@@ -9,27 +9,26 @@
 import Foundation
 import UIKit
 
-protocol arrowViewSource : class {
-    func viewForArrowView ( sender : arrowView) -> Double?
-}
 
+@IBDesignable
 class arrowView :UIView {
-    private var arrowTop : CGPoint { return convertPoint(center, fromView: superview)}
-    
+   
     @IBInspectable
-    var color : UIColor = UIColor.blueColor()
+    var color : UIColor = UIColor.blueColor() { didSet { setNeedsDisplay()}}
     @IBInspectable
     var lineWidth: CGFloat = 3 { didSet { setNeedsDisplay() } }
     
+    private var arrowTop : CGPoint { return convertPoint(center, fromView: superview)}
     override func drawRect(rect: CGRect) {
+        color.set()
         bezierPathForArrow().stroke()
     }
     private func bezierPathForArrow () -> UIBezierPath
     {
-        let arrowTopPoint = CGPoint(x: arrowTop.x , y: arrowTop.y - 100)
-        let arrowTopLeft = CGPoint(x: arrowTop.x + 50 , y: arrowTop.y - 120)
-        let arrowTopRight = CGPoint(x: arrowTop.x - 50 , y: arrowTop.y - 120)
-        let arrowBottom = CGPoint(x: arrowTop.x , y: arrowTop.y - 200)
+        let arrowTopPoint = CGPoint(x: arrowTop.x , y: arrowTop.y + 100)
+        let arrowTopLeft = CGPoint(x: arrowTop.x - 15 , y: arrowTop.y + 120)
+        let arrowTopRight = CGPoint(x: arrowTop.x + 15 , y: arrowTop.y + 120)
+        let arrowBottom = CGPoint(x: arrowTop.x , y: arrowTop.y + 200)
         
         let path = UIBezierPath()
         path.moveToPoint(arrowTopPoint)
@@ -38,7 +37,9 @@ class arrowView :UIView {
         path.addLineToPoint(arrowTopRight)
         path.moveToPoint(arrowTopPoint)
         path.addLineToPoint(arrowBottom)
-        
+        color.set()
+        path.lineWidth = lineWidth
         return path
     }
 }
+

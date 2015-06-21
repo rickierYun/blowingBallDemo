@@ -90,6 +90,10 @@
                                     <outletCollection property="gestureRecognizers" destination="UdS-Fd-Dd0" appends="YES" id="1KT-qr-cHi"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZVt-gj-ezO" customClass="arrowView" customModule="collisonView" customModuleProvider="target">
+                                <rect key="frame" x="150" y="149" width="300" height="342"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -126,6 +130,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="right" id="UdS-Fd-Dd0"/>
             </objects>
+            <point key="canvasLocation" x="566" y="437"/>
         </scene>
     </scenes>
     <resources>
