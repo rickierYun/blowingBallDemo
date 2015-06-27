@@ -17,6 +17,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZVt-gj-ezO" customClass="arrowView" customModule="collisonView" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="XCc-Kh-xeO" appends="YES" id="IXH-xx-a0o"/>
+                                </connections>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wb6-fk-zgH">
                                 <rect key="frame" x="283" y="203" width="28" height="64"/>
                                 <constraints>
@@ -87,13 +95,8 @@
                                 </state>
                                 <connections>
                                     <action selector="push:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hdG-7A-vVH"/>
-                                    <outletCollection property="gestureRecognizers" destination="UdS-Fd-Dd0" appends="YES" id="1KT-qr-cHi"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZVt-gj-ezO" customClass="arrowView" customModule="collisonView" customModuleProvider="target">
-                                <rect key="frame" x="150" y="149" width="300" height="342"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -109,15 +112,21 @@
                             <constraint firstItem="7d9-Bv-Bjw" firstAttribute="leading" secondItem="whg-OP-ZQS" secondAttribute="trailing" constant="30" id="YxF-Yc-oqu"/>
                             <constraint firstItem="s2f-WZ-IyL" firstAttribute="leading" secondItem="wb6-fk-zgH" secondAttribute="trailing" constant="18" id="eGn-CW-UJq"/>
                             <constraint firstItem="whg-OP-ZQS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="62" id="eh5-Bh-1ej"/>
+                            <constraint firstItem="ZVt-gj-ezO" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="gWd-Rt-W9i"/>
+                            <constraint firstItem="ZVt-gj-ezO" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="hsp-2A-Q1b"/>
                             <constraint firstItem="7d9-Bv-Bjw" firstAttribute="top" secondItem="MGj-OB-faQ" secondAttribute="top" id="jQ3-yz-3KC"/>
                             <constraint firstItem="whg-OP-ZQS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jgx-6m-mnH"/>
                             <constraint firstItem="lXm-j3-SSc" firstAttribute="centerX" secondItem="wb6-fk-zgH" secondAttribute="centerX" constant="3.5" id="kD6-Uj-QjJ"/>
                             <constraint firstItem="COa-Sf-R86" firstAttribute="top" secondItem="MGj-OB-faQ" secondAttribute="bottom" constant="5" id="liM-he-4tm"/>
+                            <constraint firstItem="ZVt-gj-ezO" firstAttribute="centerX" secondItem="whg-OP-ZQS" secondAttribute="centerX" id="qWx-j9-lkq"/>
+                            <constraint firstItem="ZVt-gj-ezO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="qvW-Ob-834"/>
                             <constraint firstItem="s2f-WZ-IyL" firstAttribute="top" secondItem="COa-Sf-R86" secondAttribute="top" id="u66-tr-AB8"/>
                             <constraint firstItem="wb6-fk-zgH" firstAttribute="top" secondItem="whg-OP-ZQS" secondAttribute="bottom" constant="59" id="wz3-gl-Wek"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="ArrowView" destination="ZVt-gj-ezO" id="EOT-eB-O4d"/>
+                        <outlet property="arrowView" destination="ZVt-gj-ezO" id="Zpq-ZW-mAo"/>
                         <outlet property="ball1" destination="wb6-fk-zgH" id="rru-Im-gmf"/>
                         <outlet property="ball2" destination="COa-Sf-R86" id="yWO-qk-3E1"/>
                         <outlet property="ball3" destination="s2f-WZ-IyL" id="lBc-62-fbp"/>
@@ -128,7 +137,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="UdS-Fd-Dd0"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="XCc-Kh-xeO">
+                    <connections>
+                        <action selector="SetAngle:" destination="BYZ-38-t0r" id="WsJ-cJ-4Ls"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="566" y="437"/>
         </scene>

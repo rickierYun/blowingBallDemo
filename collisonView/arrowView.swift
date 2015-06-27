@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+protocol arrowViewDataSouce : class {
+    func arrowFirstState (sender : arrowView) -> Double?
+}
 
 @IBDesignable
 class arrowView :UIView {
@@ -18,28 +21,52 @@ class arrowView :UIView {
     @IBInspectable
     var lineWidth: CGFloat = 3 { didSet { setNeedsDisplay() } }
     
-    private var arrowTop : CGPoint { return convertPoint(center, fromView: superview)}
-    override func drawRect(rect: CGRect) {
-        color.set()
-        bezierPathForArrow().stroke()
+    weak var dataSource : arrowViewDataSouce?
+    
+    private var arrowTop : CGPoint {
+        return convertPoint(center, fromView: superview)
+        
     }
-    private func bezierPathForArrow () -> UIBezierPath
+   
+    
+    override func drawRect(rect: CGRect) {
+        let arrowTopPointByGesture = dataSource?.arrowFirstState(self) ?? 0.0
+        bezierPathForArrow(arrowTopPointByGesture).stroke()
+    }
+    internal func bezierPathForArrow (arrowTopPointByGesture : Double) -> UIBezierPath
     {
-        let arrowTopPoint = CGPoint(x: arrowTop.x , y: arrowTop.y + 100)
-        let arrowTopLeft = CGPoint(x: arrowTop.x - 15 , y: arrowTop.y + 120)
-        let arrowTopRight = CGPoint(x: arrowTop.x + 15 , y: arrowTop.y + 120)
+        
+        let arrowTopPoint = CGPoint(x: arrowTop.x - CGFloat(arrowTopPointByGesture), y: arrowTop.y + 100)
+        var arrowLeft = CGPoint(x: arrowTop.x - 15  , y: arrowTop.y + 120)
+        var arrowRight = CGPoint(x: arrowTop.x + 15, y: arrowTop.y + 120)
         let arrowBottom = CGPoint(x: arrowTop.x , y: arrowTop.y + 200)
+        
+        if (arrowTopPointByGesture < 0.0 )
+        {
+             arrowLeft = CGPoint(x: arrowLeft.x -  CGFloat(arrowTopPointByGesture/1.1) , y: arrowLeft.y)
+             arrowRight = CGPoint(x: arrowRight.x - CGFloat(arrowTopPointByGesture/1.5) , y: arrowRight.y )
+        }
+        else {
+             arrowLeft = CGPoint(x: arrowLeft.x - CGFloat(arrowTopPointByGesture/1.5) , y: arrowLeft.y)
+             arrowRight = CGPoint(x: arrowRight.x - CGFloat(arrowTopPointByGesture/1.1) , y: arrowRight.y )
+        }
+       
+    //let radian = atan2((arrowTopPoint.x - arrowBottom.x), (arrowTopPoint.y - arrowBottom.y))
         
         let path = UIBezierPath()
         path.moveToPoint(arrowTopPoint)
-        path.addLineToPoint(arrowTopLeft)
+        path.addLineToPoint(arrowLeft)
         path.moveToPoint(arrowTopPoint)
-        path.addLineToPoint(arrowTopRight)
+        path.addLineToPoint(arrowRight)
         path.moveToPoint(arrowTopPoint)
         path.addLineToPoint(arrowBottom)
         color.set()
         path.lineWidth = lineWidth
         return path
+        
+       
     }
+    
+    
 }
 

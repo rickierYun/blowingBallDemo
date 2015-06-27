@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController,UICollisionBehaviorDelegate {
+class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewDataSouce {
 
     
     @IBOutlet weak var ball6: UIButton!
@@ -25,11 +25,25 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate {
     var animator = UIDynamicAnimator()
     let boundaryWithIdentifierRight = UIView(frame: CGRect(x: 50, y: 20, width: 1, height: 1000))
     let boundaryWithIdentifierLeft = UIView(frame: CGRect(x: 300, y: 20, width: 1, height: 1000))
+    var arrowPointChange = 0.0{
+        didSet {
+            //println("\(arrowPointChange)")
+            updateUI()
+        }
+    }
+    
+    func updateUI() {
+        ArrowView.setNeedsDisplay()
+    }
+    
+    func arrowFirstState(sender: arrowView) -> Double? {
+        return arrowPointChange
+    }
     
     @IBAction func push(sender: AnyObject) {
         animator.removeAllBehaviors()
         var push = UIPushBehavior(items: [self.pushBall], mode: UIPushBehaviorMode.Continuous)
-        push.setAngle(-190, magnitude: 2)
+        push.setAngle(CGFloat(1.5 * M_PI), magnitude: 2)
         animator.addBehavior(push)
         collision = UICollisionBehavior(items: [self.ball1,self.ball2,self.ball3,self.ball4,self.ball5,self.ball6,self.pushBall])
         //collision.translatesReferenceBoundsIntoBoundary = false
@@ -42,11 +56,35 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate {
         
     }
 
-    @IBAction func SetAngle(gesture: UISwipeGestureRecognizer) {
-        let direction : UISwipeGestureRecognizerDirection = gesture.direction
+    
+    @IBOutlet weak var ArrowView: arrowView!{
+        didSet{
+            ArrowView.dataSource = self
+        }
+    }
+    private struct Constants {
+            static let arrowMoveLength: CGFloat = 4
+    }
+
+    
+    @IBAction func SetAngle(gesture: UIPanGestureRecognizer) {
+        switch gesture.state {
+        case .Ended : fallthrough
+        case .Changed:
+            let translation = gesture.translationInView(ArrowView)
+            let pointChange = -Double(translation.x )
+            if pointChange != 0.0 {
+                arrowPointChange += pointChange
+
+                gesture.setTranslation(CGPointZero, inView: ArrowView)
+            }
+            
+        default :break
+            
+        }
         
     }
-    override func viewDidLoad() {
+        override func viewDidLoad() {
         super.viewDidLoad()
         boundaryWithIdentifierRight.backgroundColor = UIColor.redColor()
         boundaryWithIdentifierLeft.backgroundColor = UIColor.redColor()
