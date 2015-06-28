@@ -40,28 +40,28 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
         return arrowPointChange
     }
     
-    @IBAction func push(sender: AnyObject) {
-        animator.removeAllBehaviors()
-        var push = UIPushBehavior(items: [self.pushBall], mode: UIPushBehaviorMode.Continuous)
-        push.setAngle(CGFloat(1.5 * M_PI), magnitude: 2)
-        animator.addBehavior(push)
-        collision = UICollisionBehavior(items: [self.ball1,self.ball2,self.ball3,self.ball4,self.ball5,self.ball6,self.pushBall])
-        //collision.translatesReferenceBoundsIntoBoundary = false
-        //animator.addBehavior(collision)
-        //collision = UICollisionBehavior(items: [self.hidden])
-        collision.addBoundaryWithIdentifier("boundaryWithIdentifierRight", forPath: UIBezierPath(rect: boundaryWithIdentifierRight.frame))
-        collision.addBoundaryWithIdentifier("boundaryWithIdentifierLeft", forPath: UIBezierPath(rect: boundaryWithIdentifierLeft.frame))
-        collision.translatesReferenceBoundsIntoBoundary = true
-        animator.addBehavior(collision)
-        
-    }
-
-    
     @IBOutlet weak var ArrowView: arrowView!{
         didSet{
             ArrowView.dataSource = self
         }
     }
+    
+    @IBAction func push(sender: AnyObject) {
+        animator.removeAllBehaviors()
+        var radian =  ArrowView.bezierPathForArrow(arrowPointChange).radian
+        var push = UIPushBehavior(items: [self.pushBall], mode: UIPushBehaviorMode.Continuous)
+        push.setAngle(CGFloat( 0.5 * M_PI ) - radian, magnitude: 2)
+        animator.addBehavior(push)
+        collision = UICollisionBehavior(items: [self.ball1,self.ball2,self.ball3,self.ball4,self.ball5,self.ball6,self.pushBall])
+        collision.addBoundaryWithIdentifier("boundaryWithIdentifierRight", forPath: UIBezierPath(rect: boundaryWithIdentifierRight.frame))
+        collision.addBoundaryWithIdentifier("boundaryWithIdentifierLeft", forPath: UIBezierPath(rect: boundaryWithIdentifierLeft.frame))
+        collision.translatesReferenceBoundsIntoBoundary = true
+        animator.addBehavior(collision)
+        ArrowView.removeFromSuperview()
+    }
+    
+    
+    
     private struct Constants {
             static let arrowMoveLength: CGFloat = 4
     }

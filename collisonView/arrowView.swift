@@ -6,11 +6,11 @@
 //  Copyright (c) 2015年 欧阳云慧. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 protocol arrowViewDataSouce : class {
     func arrowFirstState (sender : arrowView) -> Double?
+
 }
 
 @IBDesignable
@@ -30,10 +30,12 @@ class arrowView :UIView {
    
     
     override func drawRect(rect: CGRect) {
+        color.set()
         let arrowTopPointByGesture = dataSource?.arrowFirstState(self) ?? 0.0
-        bezierPathForArrow(arrowTopPointByGesture).stroke()
+        bezierPathForArrow(arrowTopPointByGesture).path.stroke()
     }
-    internal func bezierPathForArrow (arrowTopPointByGesture : Double) -> UIBezierPath
+    
+    func bezierPathForArrow (arrowTopPointByGesture : Double) -> (path:UIBezierPath , radian : CGFloat)
     {
         
         let arrowTopPoint = CGPoint(x: arrowTop.x - CGFloat(arrowTopPointByGesture), y: arrowTop.y + 100)
@@ -51,7 +53,7 @@ class arrowView :UIView {
              arrowRight = CGPoint(x: arrowRight.x - CGFloat(arrowTopPointByGesture/1.1) , y: arrowRight.y )
         }
        
-    //let radian = atan2((arrowTopPoint.x - arrowBottom.x), (arrowTopPoint.y - arrowBottom.y))
+        let radian = atan2((arrowTopPoint.x - arrowBottom.x), (arrowTopPoint.y - arrowBottom.y))
         
         let path = UIBezierPath()
         path.moveToPoint(arrowTopPoint)
@@ -60,9 +62,8 @@ class arrowView :UIView {
         path.addLineToPoint(arrowRight)
         path.moveToPoint(arrowTopPoint)
         path.addLineToPoint(arrowBottom)
-        color.set()
         path.lineWidth = lineWidth
-        return path
+        return (path, radian)
         
        
     }
