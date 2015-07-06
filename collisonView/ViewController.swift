@@ -6,10 +6,11 @@
 //  Copyright (c) 2015年 欧阳云慧. All rights reserved.
 //
 
+
 import UIKit
 
 class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewDataSouce {
-
+    
     
     @IBOutlet weak var ball6: UIButton!
     @IBOutlet weak var ball5: UIButton!
@@ -25,9 +26,16 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     var animator = UIDynamicAnimator()
     let boundaryWithIdentifierRight = UIView(frame: CGRect(x: 50, y: 20, width: 1, height: 1000))
     let boundaryWithIdentifierLeft = UIView(frame: CGRect(x: 300, y: 20, width: 1, height: 1000))
+    
     var arrowPointChange = 0.0{
         didSet {
-            //println("\(arrowPointChange)")
+            updateUI()
+        }
+    }
+    //var arrowPointChange = 0.0
+    
+    var levelChange = 0{
+        didSet {
             updateUI()
         }
     }
@@ -40,11 +48,17 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
         return arrowPointChange
     }
     
+    func firstLevel(sender : arrowView) -> Int? {
+        return levelChange
+    }
+    
     @IBOutlet weak var ArrowView: arrowView!{
         didSet{
             ArrowView.dataSource = self
+            ArrowView.dataSouceOfLevel = self
         }
     }
+    
     
     @IBAction func push(sender: AnyObject) {
         animator.removeAllBehaviors()
@@ -62,10 +76,24 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     
     
     
-    private struct Constants {
-            static let arrowMoveLength: CGFloat = 4
+    @IBAction func setLevel(gesture: UIPanGestureRecognizer) {
+        switch gesture.state {
+        case .Ended :fallthrough
+        case .Changed :
+            let translation = gesture.translationInView(ArrowView)
+            let levelEnergy = Int(translation.y)
+            if levelChange != 0{
+                levelChange += levelEnergy
+                gesture.setTranslation(CGPointZero, inView: ArrowView)
+            }
+        default :break
+        }
+        
     }
-
+    
+    private struct Constants {
+        static let arrowMoveLength: CGFloat = 4
+    }
     
     @IBAction func SetAngle(gesture: UIPanGestureRecognizer) {
         switch gesture.state {
@@ -73,9 +101,10 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
         case .Changed:
             let translation = gesture.translationInView(ArrowView)
             let pointChange = -Double(translation.x )
+            
             if pointChange != 0.0 {
                 arrowPointChange += pointChange
-
+                
                 gesture.setTranslation(CGPointZero, inView: ArrowView)
             }
             
@@ -84,7 +113,7 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
         }
         
     }
-        override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         boundaryWithIdentifierRight.backgroundColor = UIColor.redColor()
         boundaryWithIdentifierLeft.backgroundColor = UIColor.redColor()
@@ -95,14 +124,14 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
         
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         animator = UIDynamicAnimator(referenceView: self.view)
         // Dispose of any resources that can be recreated.
     }
     
-
-
+    
+    
 }
 
