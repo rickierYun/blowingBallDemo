@@ -19,13 +19,9 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     @IBOutlet weak var ball2: UIButton!
     @IBOutlet weak var ball1: UIButton!
     @IBOutlet weak var pushBall: UIButton!
-    @IBOutlet weak var hidden: UIButton!
     
     var collision : UICollisionBehavior!
-    var collisionWithIdentifier : UICollisionBehavior!
     var animator = UIDynamicAnimator()
-    let boundaryWithIdentifierRight = UIView(frame: CGRect(x: 50, y: 20, width: 1, height: 1000))
-    let boundaryWithIdentifierLeft = UIView(frame: CGRect(x: 300, y: 20, width: 1, height: 1000))
     
     var arrowPointChange = 0.0{
         didSet {
@@ -34,7 +30,7 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     }
     //var arrowPointChange = 0.0
     
-    var levelChange = 0{
+    var levelChange = 50{
         didSet {
             updateUI()
         }
@@ -60,6 +56,11 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     }
     
     
+    struct PathNames {
+        static let lb = "boundaryWithIdentifierRight"
+        static let rb = "boundaryWithIdentifierLeft"
+    }
+    
     @IBAction func push(sender: AnyObject) {
         animator.removeAllBehaviors()
         var radian =  ArrowView.bezierPathForArrow(arrowPointChange).radian
@@ -67,28 +68,19 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
         push.setAngle(CGFloat( 0.5 * M_PI ) - radian, magnitude: 2)
         animator.addBehavior(push)
         collision = UICollisionBehavior(items: [self.ball1,self.ball2,self.ball3,self.ball4,self.ball5,self.ball6,self.pushBall])
-        collision.addBoundaryWithIdentifier("boundaryWithIdentifierRight", forPath: UIBezierPath(rect: boundaryWithIdentifierRight.frame))
-        collision.addBoundaryWithIdentifier("boundaryWithIdentifierLeft", forPath: UIBezierPath(rect: boundaryWithIdentifierLeft.frame))
+        collision.addBoundaryWithIdentifier(PathNames.rb, forPath: UIBezierPath(rect: drawbound().lb.frame))
+        collision.addBoundaryWithIdentifier(PathNames.lb, forPath: UIBezierPath(rect: drawbound().rb.frame))
         collision.translatesReferenceBoundsIntoBoundary = true
         animator.addBehavior(collision)
         ArrowView.removeFromSuperview()
+        
     }
     
-    
-    
-    @IBAction func setLevel(gesture: UIPanGestureRecognizer) {
-        switch gesture.state {
-        case .Ended :fallthrough
-        case .Changed :
-            let translation = gesture.translationInView(ArrowView)
-            let levelEnergy = Int(translation.y)
-            if levelChange != 0{
-                levelChange += levelEnergy
-                gesture.setTranslation(CGPointZero, inView: ArrowView)
-            }
-        default :break
-        }
-        
+    private func drawbound() -> (lb:UIView , rb: UIView) {
+        let boundaryWithIdentifierRight = UIView(frame: CGRect(x: ArrowView.bounds.maxX/2 - 100, y: 20, width: 1, height: 1000))
+        let boundaryWithIdentifierLeft = UIView(frame: CGRect(x: ArrowView.bounds.maxX/2 + 100, y: 20, width: 1, height: 1000))
+       
+        return (boundaryWithIdentifierRight, boundaryWithIdentifierLeft)
     }
     
     private struct Constants {
@@ -107,22 +99,32 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
                 
                 gesture.setTranslation(CGPointZero, inView: ArrowView)
             }
+            let levelEnergy = -Int(translation.y/10)
+            if levelEnergy != 0{
+                levelChange += levelEnergy
+                gesture.setTranslation(CGPointZero, inView: ArrowView)
+            }
             
         default :break
             
         }
         
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        boundaryWithIdentifierRight.backgroundColor = UIColor.redColor()
-        boundaryWithIdentifierLeft.backgroundColor = UIColor.redColor()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        viewAddbould()
+    }
+    
+    func viewAddbould(){
         
-        view.addSubview(boundaryWithIdentifierRight)
-        view.addSubview(boundaryWithIdentifierLeft)
+        let blf = drawbound().lb
+        let brf = drawbound().rb
         
-        
-        // Do any additional setup after loading the view, typically from a nib.
+        blf.backgroundColor = UIColor.redColor()
+        brf.backgroundColor = UIColor.redColor()
+        view.addSubview(blf)
+        view.addSubview(brf)
+
     }
     
     override func didReceiveMemoryWarning() {

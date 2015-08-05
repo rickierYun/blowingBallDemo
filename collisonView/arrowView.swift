@@ -35,6 +35,15 @@ class arrowView :UIView {
         
     }
     
+    private var viewButtom: CGFloat {
+        let buttom = superview!.bounds.maxY - 80
+        return buttom
+    }
+    
+    private var leftBound: CGFloat {
+        let left = superview!.bounds.minX + 10
+        return left
+    }
     
     override func drawRect(rect: CGRect) {
         color.set()
@@ -42,7 +51,7 @@ class arrowView :UIView {
         bezierPathForArrow(arrowTopPointByGesture).path.stroke()
         let levelEnergChangeByGesture = dataSouceOfLevel?.firstLevel(self) ?? 0
         switch levelEnergChangeByGesture{
-        case 0..<1 :
+        case 0..<51 :
             colorGreen.set()
             firstLevelOfEnergy().stroke()
             grayColor.set()
@@ -50,7 +59,7 @@ class arrowView :UIView {
             thirdLevelOfEnergy().stroke()
             forthLevelOfEnergy().stroke()
             fifthLevelOfEnergy().stroke()
-        case 1..<2 :
+        case 51..<60 :
             colorGreen.set()
             firstLevelOfEnergy().stroke()
             lightYellowColor.set()
@@ -59,9 +68,9 @@ class arrowView :UIView {
             thirdLevelOfEnergy().stroke()
             forthLevelOfEnergy().stroke()
             fifthLevelOfEnergy().stroke()
-        case 2..<3 :
+        case 60..<70 :
             colorGreen.set()
-            fifthLevelOfEnergy().stroke()
+            firstLevelOfEnergy().stroke()
             lightYellowColor.set()
             secondaryLevelOfEnergy().stroke()
             yellowColor.set()
@@ -69,7 +78,7 @@ class arrowView :UIView {
             grayColor.set()
             forthLevelOfEnergy().stroke()
             fifthLevelOfEnergy().stroke()
-        case 3..<4 :
+        case 70..<80 :
             colorGreen.set()
             firstLevelOfEnergy().stroke()
             lightYellowColor.set()
@@ -80,7 +89,7 @@ class arrowView :UIView {
             forthLevelOfEnergy().stroke()
             grayColor.set()
             fifthLevelOfEnergy().stroke()
-        case 4..<50 :
+        case 80..<100 :
             colorGreen.set()
             firstLevelOfEnergy().stroke()
             lightYellowColor.set()
@@ -98,10 +107,10 @@ class arrowView :UIView {
     func bezierPathForArrow (arrowTopPointByGesture : Double) -> (path:UIBezierPath , radian : CGFloat)
     {
         
-        let arrowTopPoint = CGPoint(x: viewCenter.x - CGFloat(arrowTopPointByGesture), y: viewCenter.y + 100 )
-        var arrowLeft = CGPoint(x: viewCenter.x - 15  , y: viewCenter.y + 120)
-        var arrowRight = CGPoint(x: viewCenter.x + 15, y: viewCenter.y + 120)
-        let arrowBottom = CGPoint(x: viewCenter.x , y: viewCenter.y + 180)
+        let arrowTopPoint = CGPoint(x: viewCenter.x - CGFloat(arrowTopPointByGesture), y: viewButtom - 80 )
+        var arrowLeft = CGPoint(x: viewCenter.x - 15  , y: viewButtom - 60)
+        var arrowRight = CGPoint(x: viewCenter.x + 15, y: viewButtom - 60)
+        let arrowBottom = CGPoint(x: viewCenter.x , y: viewButtom)
         
         if (arrowTopPointByGesture < 0.0 )
         {
@@ -129,8 +138,8 @@ class arrowView :UIView {
     }
     private func firstLevelOfEnergy() -> UIBezierPath
     {
-        let firstLevelStartPoint = CGPoint(x: viewCenter.x - 200 , y: viewCenter.y - 200)
-        let firstLevelEndingPoint = CGPoint(x: viewCenter.x - 150 , y: viewCenter.y - 200)
+        let firstLevelStartPoint = CGPoint(x: leftBound , y: viewCenter.y )
+        let firstLevelEndingPoint = CGPoint(x: leftBound + 50 , y: viewCenter.y)
         let path = UIBezierPath()
         path.moveToPoint(firstLevelStartPoint)
         path.addLineToPoint(firstLevelEndingPoint)
@@ -140,8 +149,8 @@ class arrowView :UIView {
     
     private func secondaryLevelOfEnergy() -> UIBezierPath
     {
-        let secondaryLevelStartPoint = CGPoint(x: viewCenter.x - 200 , y: viewCenter.y - 210)
-        let secondaryLevelEndingPoint = CGPoint(x: viewCenter.x - 120 , y: viewCenter.y - 210)
+        let secondaryLevelStartPoint = CGPoint(x: leftBound , y: viewCenter.y - 10)
+        let secondaryLevelEndingPoint = CGPoint(x: leftBound + 60 , y: viewCenter.y - 10)
         let path = UIBezierPath()
         path.moveToPoint(secondaryLevelStartPoint)
         path.addLineToPoint(secondaryLevelEndingPoint)
@@ -151,8 +160,8 @@ class arrowView :UIView {
     
     private func thirdLevelOfEnergy() -> UIBezierPath
     {
-        let thirdLevelStartPoint = CGPoint(x: viewCenter.x - 200 , y: viewCenter.y - 220)
-        let thirdLevelEndingPoint = CGPoint(x: viewCenter.x - 100 , y: viewCenter.y - 220)
+        let thirdLevelStartPoint = CGPoint(x: leftBound  , y: viewCenter.y - 20)
+        let thirdLevelEndingPoint = CGPoint(x: leftBound + 70 , y: viewCenter.y - 20)
         let path = UIBezierPath()
         path.moveToPoint(thirdLevelStartPoint)
         path.addLineToPoint(thirdLevelEndingPoint)
@@ -162,8 +171,8 @@ class arrowView :UIView {
     
     private func forthLevelOfEnergy() -> UIBezierPath
     {
-        let forthLevelStartPoint = CGPoint(x: viewCenter.x - 200, y: viewCenter.y - 230)
-        let forthLevelEndingPoint = CGPoint(x: viewCenter.x - 80, y: viewCenter.y - 230)
+        let forthLevelStartPoint = CGPoint(x: leftBound , y: viewCenter.y - 30)
+        let forthLevelEndingPoint = CGPoint(x: leftBound + 80, y: viewCenter.y - 30)
         let path = UIBezierPath()
         path.moveToPoint(forthLevelStartPoint)
         path.addLineToPoint(forthLevelEndingPoint)
@@ -173,8 +182,8 @@ class arrowView :UIView {
     
     private func fifthLevelOfEnergy() -> UIBezierPath
     {
-        let fifthLevelStartPoint = CGPoint(x: viewCenter.x - 200 , y: viewCenter.y - 240)
-        let fifThLevelEndingPoint = CGPoint(x: viewCenter.x - 60 , y: viewCenter.y - 240)
+        let fifthLevelStartPoint = CGPoint(x: leftBound  , y: viewCenter.y - 40)
+        let fifThLevelEndingPoint = CGPoint(x: leftBound + 90 , y: viewCenter.y - 40)
         let path = UIBezierPath()
         path.moveToPoint(fifthLevelStartPoint)
         path.addLineToPoint(fifThLevelEndingPoint)
