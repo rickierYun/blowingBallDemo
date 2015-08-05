@@ -64,8 +64,9 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     @IBAction func push(sender: AnyObject) {
         animator.removeAllBehaviors()
         var radian =  ArrowView.bezierPathForArrow(arrowPointChange).radian
+        var lecb  = CGFloat(ArrowView.levelSelect())
         var push = UIPushBehavior(items: [self.pushBall], mode: UIPushBehaviorMode.Continuous)
-        push.setAngle(CGFloat( 0.5 * M_PI ) - radian, magnitude: 2)
+        push.setAngle(CGFloat( 0.5 * M_PI ) - radian, magnitude: lecb )
         animator.addBehavior(push)
         collision = UICollisionBehavior(items: [self.ball1,self.ball2,self.ball3,self.ball4,self.ball5,self.ball6,self.pushBall])
         collision.addBoundaryWithIdentifier(PathNames.rb, forPath: UIBezierPath(rect: drawbound().lb.frame))
