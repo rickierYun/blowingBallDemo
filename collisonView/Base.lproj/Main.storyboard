@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -105,6 +106,15 @@
                                     <action selector="push:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hdG-7A-vVH"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Lu-5l-DnB">
+                                <rect key="frame" x="385" y="543" width="199" height="30"/>
+                                <state key="normal" title="ReStart">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="restart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3sB-4k-8iE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -126,8 +136,11 @@
                             <constraint firstItem="lXm-j3-SSc" firstAttribute="centerX" secondItem="wb6-fk-zgH" secondAttribute="centerX" id="kD6-Uj-QjJ"/>
                             <constraint firstItem="ZVt-gj-ezO" firstAttribute="centerX" secondItem="whg-OP-ZQS" secondAttribute="centerX" id="kjI-A7-P3v"/>
                             <constraint firstItem="COa-Sf-R86" firstAttribute="top" secondItem="MGj-OB-faQ" secondAttribute="bottom" constant="5" id="liM-he-4tm"/>
+                            <constraint firstItem="0Lu-5l-DnB" firstAttribute="centerY" secondItem="lXm-j3-SSc" secondAttribute="centerY" id="lsq-4k-WXx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0Lu-5l-DnB" secondAttribute="trailing" id="sDw-cr-Bf3"/>
                             <constraint firstItem="ZVt-gj-ezO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="sXr-qj-9uA"/>
                             <constraint firstItem="s2f-WZ-IyL" firstAttribute="top" secondItem="COa-Sf-R86" secondAttribute="top" id="u66-tr-AB8"/>
+                            <constraint firstItem="0Lu-5l-DnB" firstAttribute="leading" secondItem="lXm-j3-SSc" secondAttribute="trailing" constant="50" id="wcR-zV-h8D"/>
                             <constraint firstItem="wb6-fk-zgH" firstAttribute="top" secondItem="whg-OP-ZQS" secondAttribute="bottom" constant="59" id="wz3-gl-Wek"/>
                             <constraint firstItem="ZVt-gj-ezO" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="xzS-IY-f6c"/>
                         </constraints>
