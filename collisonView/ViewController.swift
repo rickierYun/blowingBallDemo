@@ -84,50 +84,39 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     
     func collisionBehavior(behavior: UICollisionBehavior, endedContactForItem item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying){
         if identifier as? String == PathNames.tb {
-            if item as? UIButton == pushBall {
-                behavior.removeItem(pushBall)
-                pushBall.hidden = true
-            }
-            if item as? UIButton == ball6 {
-                behavior.removeItem(ball6)
-                ball6.hidden = true
+            let ib = item as! UIButton
+            switch ib {
+            case pushBall :
+                behavior.removeItem(ib)
+                ib.hidden = true
+            case ball1 :
                 number = number + 1
-                println("\(number)")
-            }
-            if item as? UIButton == ball5 {
-                behavior.removeItem(ball5)
-                ball5.hidden = true
+                behavior.removeItem(ib)
+                ib.hidden = true
+            case ball2 :
                 number = number + 1
-                println("\(number)")
-            }
-            if item as? UIButton == ball4{
-                behavior.removeItem(ball4)
-                ball4.hidden = true
+                behavior.removeItem(ib)
+                ib.hidden = true
+            case ball3:
                 number = number + 1
-                println("\(number)")
-            }
-            if item as? UIButton == ball3 {
-                behavior.removeItem(ball3)
-                ball3.hidden = true
+                behavior.removeItem(ib)
+                ib.hidden = true
+            case ball4:
                 number = number + 1
-                println("\(number)")
-            }
-            if item as? UIButton == ball2 {
-                behavior.removeItem(ball2)
-                ball2.hidden = true
+                behavior.removeItem(ib)
+                ib.hidden = true
+            case ball5:
                 number = number + 1
-                println("\(number)")
-            }
-            if item as? UIButton == ball1 {
-                behavior.removeItem(ball1)
-                ball1.hidden = true
+                behavior.removeItem(ib)
+                ib.hidden = true
+            case ball6:
                 number = number + 1
-                println("\(number)")
+                behavior.removeItem(ib)
+                ib.hidden = true
+            default: break
             }
-
 
         }
-        println("\(number)")
     }
     
     func dynamicAnimatorDidPause(animator: UIDynamicAnimator) {
