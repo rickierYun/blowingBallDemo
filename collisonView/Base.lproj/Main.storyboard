@@ -29,11 +29,20 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
                                         <real key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="lightYellowColor">
+                                        <color key="value" red="0.73066592767905836" green="1" blue="0.076354812400822425" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="XCc-Kh-xeO" appends="YES" id="IXH-xx-a0o"/>
                                 </connections>
                             </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nOM-vf-QWb">
+                                <rect key="frame" x="0.0" y="20" width="129" height="100"/>
+                                <connections>
+                                    <segue destination="0lv-ZK-IlK" kind="embed" identifier="addMarks" id="fi6-7g-bmc"/>
+                                </connections>
+                            </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wb6-fk-zgH">
                                 <rect key="frame" x="287" y="203" width="28" height="64"/>
                                 <constraints>
@@ -165,6 +174,36 @@
                 </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="573" y="462"/>
+        </scene>
+        <!--Mark View Controller-->
+        <scene sceneID="lpe-Ws-7ZQ">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="0lv-ZK-IlK" customClass="markViewController" customModule="collisonView" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wbJ-iL-b1G"/>
+                        <viewControllerLayoutGuide type="bottom" id="Vfx-WO-0px"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="UAj-SQ-hnq">
+                        <rect key="frame" x="0.0" y="0.0" width="129" height="100"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ra8-ve-kmt">
+                                <rect key="frame" x="54" y="20" width="60" height="53"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <connections>
+                        <outlet property="marks" destination="Ra8-ve-kmt" id="6Uz-oy-tBG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W7N-CT-zRd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="843.5" y="941.5"/>
         </scene>
     </scenes>
     <resources>

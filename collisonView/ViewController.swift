@@ -23,20 +23,42 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     var collision : UICollisionBehavior!
     var animator = UIDynamicAnimator()
     var number : Int = 0
+    var markView: markViewController?
+
+//  MARK: Container
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "addMarks" {
+            markView = segue.destinationViewController as? markViewController
+            addMarks(number)
+        }
+    }
     
+    func addMarks(sender : Int){
+        if let marks = markView?.marks{
+            marks.text = String(sender)
+        }
+    }
+//  MARK: arrowView
+    
+    @IBOutlet weak var ArrowView: arrowView!{
+        didSet{
+            ArrowView.dataSource = self
+            ArrowView.dataSouceOfLevel = self
+        }
+    }
+
     var arrowPointChange = 0.0{
         didSet {
             updateUI()
         }
     }
-    //var arrowPointChange = 0.0
-    
+
     var levelChange = 50{
         didSet {
             updateUI()
         }
     }
-    
+
     func updateUI() {
         ArrowView.setNeedsDisplay()
     }
@@ -49,20 +71,14 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
         return levelChange
     }
     
-    @IBOutlet weak var ArrowView: arrowView!{
-        didSet{
-            ArrowView.dataSource = self
-            ArrowView.dataSouceOfLevel = self
-        }
-    }
-    
-    
+//  MARK: PathNames
     struct PathNames {
         static let lb = "boundaryWithIdentifierRight"
         static let rb = "boundaryWithIdentifierLeft"
         static let tb = "boundaryWithIdentifierTop"
     }
     
+//  MARK: pushBehavior
     @IBAction func push(sender: AnyObject) {
         animator.removeAllBehaviors()
         var radian =  ArrowView.bezierPathForArrow(arrowPointChange).radian
@@ -78,10 +94,9 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
         collision.collisionDelegate = self
         animator.addBehavior(collision)
         ArrowView.hidden = true
-        //dynamicAnimatorDidPause(animator)
-        //collisionBehavior(collision, endedContactForItem: , withBoundaryIdentifier: NSCopying)
     }
     
+// MARK: collisionBehavior
     func collisionBehavior(behavior: UICollisionBehavior, endedContactForItem item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying){
         if identifier as? String == PathNames.tb {
             let ib = item as! UIButton
@@ -117,12 +132,14 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
             }
 
         }
+        addMarks(number)
     }
     
     func dynamicAnimatorDidPause(animator: UIDynamicAnimator) {
         animator.removeAllBehaviors()
     }
-    
+ 
+//  MARK: drawboundary
     private func drawbound() -> (lb:UIView , rb: UIView, tb: UIView) {
         let boundaryWithIdentifierRight = UIView(frame: CGRect(x: ArrowView.bounds.maxX/2 - 100, y: 20, width: 1, height: 1000))
         let boundaryWithIdentifierLeft = UIView(frame: CGRect(x: ArrowView.bounds.maxX/2 + 100, y: 20, width: 1, height: 1000))
@@ -131,10 +148,21 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
         return (boundaryWithIdentifierRight, boundaryWithIdentifierLeft,boundaryWithIdentifierTop)
     }
     
-    private struct Constants {
-        static let arrowMoveLength: CGFloat = 4
+    func viewAddbould(){
+        
+        let blf = drawbound().lb
+        let brf = drawbound().rb
+        let btf = drawbound().tb
+        
+        blf.backgroundColor = UIColor.redColor()
+        brf.backgroundColor = UIColor.redColor()
+        view.addSubview(blf)
+        view.addSubview(brf)
+        view.addSubview(btf)
+        
     }
     
+//  MARK : set angle and level
     @IBAction func SetAngle(gesture: UIPanGestureRecognizer) {
         switch gesture.state {
         case .Ended : fallthrough
@@ -158,24 +186,10 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
         }
         
     }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         viewAddbould()
-    }
-    
-    func viewAddbould(){
-        
-        let blf = drawbound().lb
-        let brf = drawbound().rb
-        let btf = drawbound().tb
-        
-        blf.backgroundColor = UIColor.redColor()
-        brf.backgroundColor = UIColor.redColor()
-        //btf.backgroundColor = UIColor.greenColor()
-        view.addSubview(blf)
-        view.addSubview(brf)
-        view.addSubview(btf)
-
     }
     
     var refreshController : UIRefreshControl!
@@ -197,11 +211,11 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
         ArrowView.hidden = false
 //        updateUI()
 //        view.addSubview(ArrowView)
-        viewDidLoad()
+//        viewDidLoad()
 //        viewDidLayoutSubviews()
 
-        refreshController.beginRefreshing()
-        refreshController.endRefreshing()
+//        refreshController.beginRefreshing()
+//        refreshController.endRefreshing()
         
     }
     
