@@ -11,7 +11,6 @@ import UIKit
 
 class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewDataSouce,UIDynamicAnimatorDelegate {
     
-    
     @IBOutlet weak var ball6: UIButton!
     @IBOutlet weak var ball5: UIButton!
     @IBOutlet weak var ball4: UIButton!
@@ -141,9 +140,9 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
  
 //  MARK: drawboundary
     private func drawbound() -> (lb:UIView , rb: UIView, tb: UIView) {
-        let boundaryWithIdentifierRight = UIView(frame: CGRect(x: ArrowView.bounds.maxX/2 - 100, y: 20, width: 1, height: 1000))
-        let boundaryWithIdentifierLeft = UIView(frame: CGRect(x: ArrowView.bounds.maxX/2 + 100, y: 20, width: 1, height: 1000))
-        let boundaryWithIdentifierTop = UIView(frame: CGRect(x: view!.bounds.maxX/2 - 100 , y: 20, width: 200, height: 1))
+        let boundaryWithIdentifierRight = UIView(frame: CGRect(x: ArrowView.bounds.maxX/2 - 100, y: 60, width: 1, height: 1000))
+        let boundaryWithIdentifierLeft = UIView(frame: CGRect(x: ArrowView.bounds.maxX/2 + 100, y: 60, width: 1, height: 1000))
+        let boundaryWithIdentifierTop = UIView(frame: CGRect(x: view!.bounds.maxX/2 - 100 , y: 60, width: 200, height: 1))
        
         return (boundaryWithIdentifierRight, boundaryWithIdentifierLeft,boundaryWithIdentifierTop)
     }
