@@ -14,9 +14,13 @@ class loginViewController: UIViewController {
     @IBOutlet weak var password: UITextField!
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let loginStart = segue.destinationViewController as? ViewController {
+        var nation = segue.destinationViewController as? UIViewController
+        if let navc = nation as? UINavigationController {
+            nation = navc.visibleViewController
+        }
+        if let loginStart = nation as? ViewController {
             if segue.identifier == "login" {
-                loginStart.title = name.text
+                loginStart.titleName = name.text
             }
             
         }

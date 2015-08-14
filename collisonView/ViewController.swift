@@ -23,6 +23,7 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     var animator = UIDynamicAnimator()
     var number : Int = 0
     var markView: markViewController?
+    var titleName: String = "name"
 
 //  MARK: Container
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -59,7 +60,8 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     }
 
     func updateUI() {
-        ArrowView.setNeedsDisplay()
+        ArrowView?.setNeedsDisplay()
+        
     }
     
     func arrowFirstState(sender: arrowView) -> Double? {
@@ -158,6 +160,7 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
         view.addSubview(blf)
         view.addSubview(brf)
         view.addSubview(btf)
+        title = "\(titleName)"
         
     }
     
@@ -208,6 +211,7 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     
     @IBAction func restart(sender: AnyObject) {
         ArrowView.hidden = false
+       // view.setNeedsDisplay()
 //        updateUI()
 //        view.addSubview(ArrowView)
 //        viewDidLoad()

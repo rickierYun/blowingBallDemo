@@ -219,7 +219,7 @@
             </objects>
             <point key="canvasLocation" x="-497" y="713"/>
         </scene>
-        <!--Start View Controller-->
+        <!--meno-->
         <scene sceneID="7Fo-1C-Dg3">
             <objects>
                 <viewController id="YqU-IS-al7" customClass="StartViewController" customModule="collisonView" customModuleProvider="target" sceneMemberID="viewController">
@@ -248,7 +248,7 @@
                             <constraint firstAttribute="centerX" secondItem="MLI-WZ-Lfu" secondAttribute="centerX" constant="-0.5" id="fzT-SF-7w9"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="pMO-2Y-5Sy"/>
+                    <navigationItem key="navigationItem" title="meno" id="pMO-2Y-5Sy"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ywp-Oe-tpq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -270,7 +270,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W8b-T4-oCe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2009" y="1433"/>
+            <point key="canvasLocation" x="1857" y="911"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UOC-hM-kOl">
@@ -290,10 +290,10 @@
             </objects>
             <point key="canvasLocation" x="233" y="289"/>
         </scene>
-        <!--View Controller-->
+        <!--login-->
         <scene sceneID="nmC-FB-kqZ">
             <objects>
-                <viewController id="0cw-VQ-OJZ" sceneMemberID="viewController">
+                <viewController id="0cw-VQ-OJZ" customClass="loginViewController" customModule="collisonView" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9pM-w2-wVZ"/>
                         <viewControllerLayoutGuide type="bottom" id="Jee-j1-f4D"/>
@@ -303,23 +303,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bgR-uP-mKH">
-                                <rect key="frame" x="118" y="107" width="466" height="30"/>
+                                <rect key="frame" x="119" y="107" width="465" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lPz-J6-I2o">
-                                <rect key="frame" x="118" y="160" width="466" height="30"/>
+                                <rect key="frame" x="119" y="160" width="465" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcV-Oe-VF8">
-                                <rect key="frame" x="35" y="111" width="42.5" height="20.5"/>
+                                <rect key="frame" x="35" y="111" width="43" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHE-Ft-G8o">
-                                <rect key="frame" x="29" y="163" width="75" height="20.5"/>
+                                <rect key="frame" x="29" y="164" width="75" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -331,7 +331,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="9Du-sk-nGo" kind="showDetail" identifier="login" id="GDD-ym-WOU"/>
+                                    <segue destination="9Du-sk-nGo" kind="showDetail" identifier="login" id="r95-Ei-F6c"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -352,11 +352,15 @@
                             <constraint firstItem="bgR-uP-mKH" firstAttribute="trailing" secondItem="NMz-2H-cPg" secondAttribute="trailingMargin" id="x1b-WW-4Q4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="szH-oB-mWI"/>
+                    <navigationItem key="navigationItem" title="login" id="szH-oB-mWI"/>
+                    <connections>
+                        <outlet property="name" destination="bgR-uP-mKH" id="DHi-LP-v97"/>
+                        <outlet property="password" destination="lPz-J6-I2o" id="ieU-ck-1l2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yCO-gf-LUq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1135" y="1433"/>
+            <point key="canvasLocation" x="1173" y="1525"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wzY-Ig-Lqs">
