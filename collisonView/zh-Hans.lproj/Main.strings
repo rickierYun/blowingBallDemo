@@ -1,0 +1,24 @@
+
+/* Class = "UIButton"; normalTitle = "ReStart"; ObjectID = "0Lu-5l-DnB"; */
+"0Lu-5l-DnB.normalTitle" = "ReStart";
+
+/* Class = "UIButton"; normalTitle = "start"; ObjectID = "MLI-WZ-Lfu"; */
+"MLI-WZ-Lfu.normalTitle" = "start";
+
+/* Class = "UIButton"; normalTitle = "login"; ObjectID = "ORq-rK-AOc"; */
+"ORq-rK-AOc.normalTitle" = "login";
+
+/* Class = "UILabel"; text = "password"; ObjectID = "QHE-Ft-G8o"; */
+"QHE-Ft-G8o.text" = "password";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Ra8-ve-kmt"; */
+"Ra8-ve-kmt.text" = "0";
+
+/* Class = "UILabel"; text = "name"; ObjectID = "dcV-Oe-VF8"; */
+"dcV-Oe-VF8.text" = "name";
+
+/* Class = "UINavigationItem"; title = "meno"; ObjectID = "pMO-2Y-5Sy"; */
+"pMO-2Y-5Sy.title" = "meno";
+
+/* Class = "UINavigationItem"; title = "login"; ObjectID = "szH-oB-mWI"; */
+"szH-oB-mWI.title" = "login";

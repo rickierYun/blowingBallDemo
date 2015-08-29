@@ -46,6 +46,8 @@ class arrowView :UIView {
     }
     
     override func drawRect(rect: CGRect) {
+        var i :CGFloat = 1
+        var sender : CGFloat = 0
         color.set()
         let arrowTopPointByGesture = dataSource?.arrowFirstState(self) ?? 0.0
         bezierPathForArrow(arrowTopPointByGesture).path.stroke()
@@ -53,53 +55,63 @@ class arrowView :UIView {
         switch levelEnergChangeByGesture{
         case 0..<51 :
             colorGreen.set()
-            firstLevelOfEnergy().path.stroke()
+            levelOfEnergy(sender).path.stroke()
             grayColor.set()
-            secondaryLevelOfEnergy().path.stroke()
-            thirdLevelOfEnergy().path.stroke()
-            forthLevelOfEnergy().path.stroke()
-            fifthLevelOfEnergy().path.stroke()
+            while i < 5 {
+                sender = i * 10
+                levelOfEnergy(sender).path.stroke()
+                i += 1
+            }
         case 51..<60 :
             colorGreen.set()
-            firstLevelOfEnergy().path.stroke()
+            levelOfEnergy(sender).path.stroke()
             lightYellowColor.set()
-            secondaryLevelOfEnergy().path.stroke()
+            levelOfEnergy(sender + 10).path.stroke()
             grayColor.set()
-            thirdLevelOfEnergy().path.stroke()
-            forthLevelOfEnergy().path.stroke()
-            fifthLevelOfEnergy().path.stroke()
+            while i < 4 {
+                sender += 10
+                sender += i * 10
+                levelOfEnergy(sender).path.stroke()
+                sender = CGFloat(0)
+                i += 1
+            }
         case 60..<70 :
             colorGreen.set()
-            firstLevelOfEnergy().path.stroke()
+            levelOfEnergy(sender).path.stroke()
             lightYellowColor.set()
-            secondaryLevelOfEnergy().path.stroke()
+            levelOfEnergy(sender + 10).path.stroke()
             yellowColor.set()
-            thirdLevelOfEnergy().path.stroke()
+            levelOfEnergy(sender + 20).path.stroke()
             grayColor.set()
-            forthLevelOfEnergy().path.stroke()
-            fifthLevelOfEnergy().path.stroke()
+            while i < 3 {
+                sender += 20
+                sender += i * 10
+                levelOfEnergy(sender).path.stroke()
+                sender = CGFloat(0)
+                i += 1
+            }
         case 70..<80 :
             colorGreen.set()
-            firstLevelOfEnergy().path.stroke()
+            levelOfEnergy(sender).path.stroke()
             lightYellowColor.set()
-            secondaryLevelOfEnergy().path.stroke()
+            levelOfEnergy(sender + 10).path.stroke()
             yellowColor.set()
-            thirdLevelOfEnergy().path.stroke()
+            levelOfEnergy(sender + 20).path.stroke()
             organeColor.set()
-            forthLevelOfEnergy().path.stroke()
+            levelOfEnergy(sender + 30).path.stroke()
             grayColor.set()
-            fifthLevelOfEnergy().path.stroke()
+            levelOfEnergy(sender + 40).path.stroke()
         case 80..<100 :
             colorGreen.set()
-            firstLevelOfEnergy().path.stroke()
+            levelOfEnergy(sender).path.stroke()
             lightYellowColor.set()
-            secondaryLevelOfEnergy().path.stroke()
+            levelOfEnergy(sender + 10).path.stroke()
             yellowColor.set()
-            thirdLevelOfEnergy().path.stroke()
+            levelOfEnergy(sender + 20).path.stroke()
             organeColor.set()
-            forthLevelOfEnergy().path.stroke()
+            levelOfEnergy(sender + 30 ).path.stroke()
             redColor.set()
-            fifthLevelOfEnergy().path.stroke()
+            levelOfEnergy(sender + 40).path.stroke()
         default : break
         }
     }
@@ -109,15 +121,15 @@ class arrowView :UIView {
         let levelEnergChangeByGesture = dataSouceOfLevel?.firstLevel(self) ?? 0
         switch levelEnergChangeByGesture {
         case 0..<51 :
-            lecb = firstLevelOfEnergy().level
+            lecb = levelOfEnergy(0).level
         case 51..<60 :
-            lecb = secondaryLevelOfEnergy().level
+            lecb = levelOfEnergy(10).level
         case 60..<70 :
-            lecb = thirdLevelOfEnergy().level
+            lecb = levelOfEnergy(20).level
         case 70..<80 :
-            lecb = forthLevelOfEnergy().level
+            lecb = levelOfEnergy(30).level
         case 80..<100 :
-            lecb = thirdLevelOfEnergy().level
+            lecb = levelOfEnergy(40).level
         default: break
         }
         
@@ -156,70 +168,26 @@ class arrowView :UIView {
         
         
     }
-    private func firstLevelOfEnergy() -> (path:UIBezierPath , level: Int )
+    //MARK : levelOfEnergy()
+    
+    private func levelOfEnergy(sender : CGFloat) -> (path :UIBezierPath, level: Int)
     {
-        let firstLevelStartPoint = CGPoint(x: leftBound , y: viewCenter.y )
-        let firstLevelEndingPoint = CGPoint(x: leftBound + 50 , y: viewCenter.y)
+        let levelStartPoint = CGPoint(x: leftBound, y: viewCenter.y - sender)
+        let levelEndPoint = CGPoint(x: leftBound + 50 + sender, y: viewCenter.y - sender)
         let path = UIBezierPath()
-        path.moveToPoint(firstLevelStartPoint)
-        path.addLineToPoint(firstLevelEndingPoint)
+        path.moveToPoint(levelStartPoint)
+        path.addLineToPoint(levelEndPoint)
         path.lineWidth = 10
         
-        let level: Int = 2
+        var level : Int = 1
+        if sender == 0 {
+            level = 1
+        }else{
+            level = Int(sender / 10 )
+        }
         return (path,level)
     }
     
-    private func secondaryLevelOfEnergy() -> (path:UIBezierPath, level: Int)
-    {
-        let secondaryLevelStartPoint = CGPoint(x: leftBound , y: viewCenter.y - 10)
-        let secondaryLevelEndingPoint = CGPoint(x: leftBound + 60 , y: viewCenter.y - 10)
-        let path = UIBezierPath()
-        path.moveToPoint(secondaryLevelStartPoint)
-        path.addLineToPoint(secondaryLevelEndingPoint)
-        path.lineWidth = 10
-        
-        let level: Int = 4
-        return (path,level)
-    }
-    
-    private func thirdLevelOfEnergy() -> (path:UIBezierPath, level:Int)
-    {
-        let thirdLevelStartPoint = CGPoint(x: leftBound  , y: viewCenter.y - 20)
-        let thirdLevelEndingPoint = CGPoint(x: leftBound + 70 , y: viewCenter.y - 20)
-        let path = UIBezierPath()
-        path.moveToPoint(thirdLevelStartPoint)
-        path.addLineToPoint(thirdLevelEndingPoint)
-        path.lineWidth = 10
-        
-        let level: Int = 6
-        return (path,level)
-    }
-    
-    private func forthLevelOfEnergy() -> (path:UIBezierPath, level: Int)
-    {
-        let forthLevelStartPoint = CGPoint(x: leftBound , y: viewCenter.y - 30)
-        let forthLevelEndingPoint = CGPoint(x: leftBound + 80, y: viewCenter.y - 30)
-        let path = UIBezierPath()
-        path.moveToPoint(forthLevelStartPoint)
-        path.addLineToPoint(forthLevelEndingPoint)
-        path.lineWidth = 10
-        
-        let level: Int = 8
-        return (path,level)
-    }
-    
-    private func fifthLevelOfEnergy() -> (path:UIBezierPath, level: Int)
-    {
-        let fifthLevelStartPoint = CGPoint(x: leftBound  , y: viewCenter.y - 40)
-        let fifThLevelEndingPoint = CGPoint(x: leftBound + 90 , y: viewCenter.y - 40)
-        let path = UIBezierPath()
-        path.moveToPoint(fifthLevelStartPoint)
-        path.addLineToPoint(fifThLevelEndingPoint)
-        path.lineWidth = 10
-        
-        let level = 10
-        return (path, level)
-    }
-    
+
 }
 

@@ -8,10 +8,15 @@
 
 import UIKit
 
-class loginViewController: UIViewController {   
+class loginViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet weak var name: UITextField!
-    @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var name: UITextField! { didSet { name.delegate = self}}
+    @IBOutlet weak var password: UITextField! {didSet { name.delegate = self}}
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder() // show the keyboard first
+        return true
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var nation = segue.destinationViewController as? UIViewController
@@ -25,6 +30,9 @@ class loginViewController: UIViewController {
             
         }
     }
-
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
     
 }
