@@ -17,7 +17,8 @@ class loginViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder() // show the keyboard first
         return true
     }
-    
+//MARK: transmitNameToTitile
+//将写好的名字传送游戏界面的title
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var nation = segue.destinationViewController as? UIViewController
         if let navc = nation as? UINavigationController {

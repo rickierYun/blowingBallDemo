@@ -26,6 +26,7 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     var titleName: String = "name"
 
 //  MARK: Container
+//  把撞击的分数添加到 container视图中
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "addMarks" {
             markView = segue.destinationViewController as? markViewController
@@ -39,7 +40,7 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
         }
     }
 //  MARK: arrowView
-    
+//  初始化 ArrowView的所有数据
     @IBOutlet weak var ArrowView: arrowView!{
         didSet{
             ArrowView.dataSource = self
@@ -73,6 +74,7 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     }
     
 //  MARK: PathNames
+//  添加自定义边界名字
     struct PathNames {
         static let lb = "boundaryWithIdentifierRight"
         static let rb = "boundaryWithIdentifierLeft"
@@ -80,6 +82,7 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     }
     
 //  MARK: pushBehavior
+//  添加pushBehavior运动
     @IBAction func push(sender: AnyObject) {
         animator.removeAllBehaviors()
         var radian =  ArrowView.bezierPathForArrow(arrowPointChange).radian
@@ -88,6 +91,7 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
         pushBehavior.setAngle(CGFloat( 0.5 * M_PI ) - radian, magnitude: lecb )
         animator.addBehavior(pushBehavior)
         collision = UICollisionBehavior(items: [self.ball1,self.ball2,self.ball3,self.ball4,self.ball5,self.ball6,self.pushBall])
+        // 添加自定边界
         collision.addBoundaryWithIdentifier(PathNames.rb, forPath: UIBezierPath(rect: drawbound().lb.frame))
         collision.addBoundaryWithIdentifier(PathNames.lb, forPath: UIBezierPath(rect: drawbound().rb.frame))
         collision.addBoundaryWithIdentifier(PathNames.tb, forPath: UIBezierPath(rect: drawbound().tb.frame))
@@ -98,6 +102,7 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     }
     
 // MARK: collisionBehavior
+// 添加碰撞运动
     func collisionBehavior(behavior: UICollisionBehavior, endedContactForItem item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying){
         if identifier as? String == PathNames.tb {
             let ib = item as! UIButton
@@ -141,6 +146,7 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     }
  
 //  MARK: drawboundary
+//  绘制边界
     private func drawbound() -> (lb:UIView , rb: UIView, tb: UIView) {
         let boundaryWithIdentifierRight = UIView(frame: CGRect(x: ArrowView.bounds.maxX/2 - 100, y: 60, width: 1, height: 1000))
         let boundaryWithIdentifierLeft = UIView(frame: CGRect(x: ArrowView.bounds.maxX/2 + 100, y: 60, width: 1, height: 1000))
@@ -164,7 +170,8 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
         
     }
     
-//  MARK : set angle and level
+//  MARK: SetAngle
+// 定义panGestureRecognizer,设置箭头的方向和能量的等级
     @IBAction func SetAngle(gesture: UIPanGestureRecognizer) {
         switch gesture.state {
         case .Ended : fallthrough
@@ -174,7 +181,6 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
             
             if pointChange != 0.0 {
                 arrowPointChange += pointChange
-                
                 gesture.setTranslation(CGPointZero, inView: ArrowView)
             }
             let levelEnergy = -Int(translation.y/10)
@@ -188,13 +194,13 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
         }
         
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         viewAddbould()
     }
     
-    var refreshController : UIRefreshControl!
+//    var refreshController : UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()

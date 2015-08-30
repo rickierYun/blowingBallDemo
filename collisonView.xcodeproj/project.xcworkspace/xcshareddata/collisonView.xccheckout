@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>71632917-4BB4-4483-A102-5FCC1D1E2A7C</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>collisonView</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>8D843476EB622030DD44473484B3C6DED2DC8BFE</key>
 		<string>https://git.coding.net/rickYun/collisionViewOfBowling.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>collisonView.xcodeproj/project.xcworkspace</string>
+	<string>collisonView.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>8D843476EB622030DD44473484B3C6DED2DC8BFE</key>

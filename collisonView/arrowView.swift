@@ -13,6 +13,9 @@ protocol arrowViewDataSouce : class {
     func firstLevel(sender: arrowView) -> Int?
 }
 
+//MARK: arrowView
+//创建一个视图类，构造箭头和能量等级视图
+
 @IBDesignable
 class arrowView :UIView {
     
@@ -30,21 +33,26 @@ class arrowView :UIView {
     weak var dataSource : arrowViewDataSouce?
     weak var dataSouceOfLevel : arrowViewDataSouce?
     
+//MARK: viewCenter
+//寻找本个UIview的中心点
     private var viewCenter : CGPoint {
         return convertPoint(center, fromView: superview)
         
     }
-    
+//MARK: viewButtom
+//定义箭头的底部与视图底部的距离
     private var viewButtom: CGFloat {
         let buttom = superview!.bounds.maxY - 80
         return buttom
     }
-    
+//MARK: leftBound
+//定义左边距
     private var leftBound: CGFloat {
         let left = superview!.bounds.minX + 10
         return left
     }
-    
+//MARK: drawRect
+//绘制箭头和等级
     override func drawRect(rect: CGRect) {
         var i :CGFloat = 1
         var sender : CGFloat = 0
@@ -135,7 +143,8 @@ class arrowView :UIView {
         
         return lecb
     }
-    
+//MARK: bezierPathArrow
+//构建箭头的绘制路径，确定其在视图上的位置，保证在所有设备上的地点一致
     func bezierPathForArrow (arrowTopPointByGesture : Double) -> (path:UIBezierPath , radian : CGFloat)
     {
         
@@ -168,8 +177,8 @@ class arrowView :UIView {
         
         
     }
-    //MARK : levelOfEnergy()
-    
+//MARK: levelOfEnergy
+//构建能量等级的绘制路径，确定其在view 上的位置，保持其在左上角
     private func levelOfEnergy(sender : CGFloat) -> (path :UIBezierPath, level: Int)
     {
         let levelStartPoint = CGPoint(x: leftBound, y: viewCenter.y - sender)
