@@ -20,6 +20,7 @@
 		2FAC23EB1B6F463700FB42DD /* PushBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAC23EA1B6F463700FB42DD /* PushBehavior.swift */; };
 		2FAE1EE91B36900200A32E25 /* arrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCC88E51B343B0B0061533F /* arrowView.swift */; };
 		2FF43ADD1B97CF1400F684BE /* blowingMusicOfCollison.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2FF43ADC1B97CF1400F684BE /* blowingMusicOfCollison.mp3 */; };
+		2FF43ADF1B97D10D00F684BE /* playMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF43ADE1B97D10D00F684BE /* playMusic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		2FAC23EA1B6F463700FB42DD /* PushBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushBehavior.swift; sourceTree = "<group>"; };
 		2FCC88E51B343B0B0061533F /* arrowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = arrowView.swift; sourceTree = "<group>"; usesTabs = 0; };
 		2FF43ADC1B97CF1400F684BE /* blowingMusicOfCollison.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = blowingMusicOfCollison.mp3; sourceTree = "<group>"; };
+		2FF43ADE1B97D10D00F684BE /* playMusic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = playMusic.swift; path = ../playMusic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 		2F3168921B2C140E00D30EFE /* collisonView */ = {
 			isa = PBXGroup;
 			children = (
+				2FF43ADE1B97D10D00F684BE /* playMusic.swift */,
 				2F3168971B2C140E00D30EFE /* ViewController.swift */,
 				2FAC23EA1B6F463700FB42DD /* PushBehavior.swift */,
 				2F3168991B2C140E00D30EFE /* Main.storyboard */,
@@ -238,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F72C5B01B7986D8003F5679 /* loginViewController.swift in Sources */,
+				2FF43ADF1B97D10D00F684BE /* playMusic.swift in Sources */,
 				2FAC23EB1B6F463700FB42DD /* PushBehavior.swift in Sources */,
 				2F899B431B7482C500873129 /* markViewController.swift in Sources */,
 				2FAE1EE91B36900200A32E25 /* arrowView.swift in Sources */,

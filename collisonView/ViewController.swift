@@ -21,40 +21,27 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     @IBOutlet weak var pushBall: UIButton!
     
     let pushOneBall = PushBehavior()
+    let audioPlay = playMusic()
     
     var collision : UICollisionBehavior!
     var animator = UIDynamicAnimator()
     var number : Int = 0
     var markView: markViewController?
     var titleName: String = "name"
-//  添加一个音乐播放器
-    var audioPlay : AVAudioPlayer!
-    var pushAudioPlay: AVAudioPlayer!
+//  定义播放音乐的名字
+    struct musicName {
+        static let bmoc = "blowingMusicOfCollison"
+        static let pb = "pushBlowing"
+    }
     
-//  MARK: playMusic
-//  定义一个播放函数,播放碰撞声音
-    func playMusicOfCollison(){
-        let musicPath = NSBundle.mainBundle().pathForResource("blowingMusicOfCollison", ofType: "mp3")
-        let url = NSURL(fileURLWithPath: musicPath!)
-        audioPlay = AVAudioPlayer(contentsOfURL: url, error: nil)
-        //定义播放次数
-        audioPlay.numberOfLoops = 0
-        audioPlay.volume = 0.5
-        audioPlay.prepareToPlay()
-        audioPlay.play()
+//  MARK: PathNames
+//  添加自定义边界名字
+    struct PathNames {
+        static let lb = "boundaryWithIdentifierRight"
+        static let rb = "boundaryWithIdentifierLeft"
+        static let tb = "boundaryWithIdentifierTop"
     }
-//  定义播放push声音
-    func playMusicOfPush(){
-        let musicPath = NSBundle.mainBundle().pathForResource("pushBlowing", ofType: "mp3")
-        let url = NSURL(fileURLWithPath: musicPath!)
-        pushAudioPlay = AVAudioPlayer(contentsOfURL: url, error: nil)
-        pushAudioPlay.numberOfLoops = 0
-        pushAudioPlay.volume = 0.5
-        pushAudioPlay.prepareToPlay()
-        pushAudioPlay.play()
-    }
-//  MARK: Container
-//  把撞击的分数添加到 container视图中
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "addMarks" {
             markView = segue.destinationViewController as? markViewController
@@ -100,15 +87,7 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     func firstLevel(sender : arrowView) -> Int? {
         return levelChange
     }
-    
-//  MARK: PathNames
-//  添加自定义边界名字
-    struct PathNames {
-        static let lb = "boundaryWithIdentifierRight"
-        static let rb = "boundaryWithIdentifierLeft"
-        static let tb = "boundaryWithIdentifierTop"
-    }
-    
+
 //  MARK: pushBehavior
 //  添加pushBehavior运动
     @IBAction func push(sender: AnyObject) {
@@ -118,7 +97,7 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
         pushOneBall.addBall(pushBall)
         pushOneBall.setAngled(radian,magnitude: lecb)
         animator.addBehavior(pushOneBall)
-        playMusicOfPush()
+        audioPlay.playMusic(musicName.pb)
         collision = UICollisionBehavior(items: [self.ball1,self.ball2,self.ball3,self.ball4,self.ball5,self.ball6,self.pushBall])
         // 添加自定边界
         collision.addBoundaryWithIdentifier(PathNames.rb, forPath: UIBezierPath(rect: drawbound().lb.frame))
@@ -175,23 +154,23 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
             let it = item2 as! UIButton
             switch it {
             case ball1:
-                playMusicOfCollison()
+                audioPlay.playMusic(musicName.bmoc)
                 pushOneBall.slowDown(pushBall)
             case ball2:
                 pushOneBall.slowDown(pushBall)
-                playMusicOfCollison()
+                audioPlay.playMusic(musicName.bmoc)
             case ball3:
                 pushOneBall.slowDown(pushBall)
-                playMusicOfCollison()
+                audioPlay.playMusic(musicName.bmoc)
             case ball4:
                 pushOneBall.slowDown(pushBall)
-                playMusicOfCollison()
+                audioPlay.playMusic(musicName.bmoc)
             case ball5:
                 pushOneBall.slowDown(pushBall)
-                playMusicOfCollison()
+                audioPlay.playMusic(musicName.bmoc)
             case ball6:
                 pushOneBall.slowDown(pushBall)
-                playMusicOfCollison()
+                audioPlay.playMusic(musicName.bmoc)
             default: break
             }
         }
