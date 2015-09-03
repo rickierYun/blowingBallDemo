@@ -8,8 +8,9 @@
 
 
 import UIKit
+import AVFoundation
 
-class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewDataSouce,UIDynamicAnimatorDelegate {
+class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewDataSouce,UIDynamicAnimatorDelegate{
     
     @IBOutlet weak var ball6: UIButton!
     @IBOutlet weak var ball5: UIButton!
@@ -19,12 +20,39 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     @IBOutlet weak var ball1: UIButton!
     @IBOutlet weak var pushBall: UIButton!
     
+    let pushOneBall = PushBehavior()
+    
     var collision : UICollisionBehavior!
     var animator = UIDynamicAnimator()
     var number : Int = 0
     var markView: markViewController?
     var titleName: String = "name"
-
+//  添加一个音乐播放器
+    var audioPlay : AVAudioPlayer!
+    var pushAudioPlay: AVAudioPlayer!
+    
+//  MARK: playMusic
+//  定义一个播放函数,播放碰撞声音
+    func playMusicOfCollison(){
+        let musicPath = NSBundle.mainBundle().pathForResource("blowingMusicOfCollison", ofType: "mp3")
+        let url = NSURL(fileURLWithPath: musicPath!)
+        audioPlay = AVAudioPlayer(contentsOfURL: url, error: nil)
+        //定义播放次数
+        audioPlay.numberOfLoops = 0
+        audioPlay.volume = 0.5
+        audioPlay.prepareToPlay()
+        audioPlay.play()
+    }
+//  定义播放push声音
+    func playMusicOfPush(){
+        let musicPath = NSBundle.mainBundle().pathForResource("pushBlowing", ofType: "mp3")
+        let url = NSURL(fileURLWithPath: musicPath!)
+        pushAudioPlay = AVAudioPlayer(contentsOfURL: url, error: nil)
+        pushAudioPlay.numberOfLoops = 0
+        pushAudioPlay.volume = 0.5
+        pushAudioPlay.prepareToPlay()
+        pushAudioPlay.play()
+    }
 //  MARK: Container
 //  把撞击的分数添加到 container视图中
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -86,10 +114,11 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     @IBAction func push(sender: AnyObject) {
         animator.removeAllBehaviors()
         var radian =  ArrowView.bezierPathForArrow(arrowPointChange).radian
-        var lecb  = CGFloat(ArrowView.levelSelect())
-        var pushBehavior = UIPushBehavior(items: [self.pushBall], mode: UIPushBehaviorMode.Continuous)
-        pushBehavior.setAngle(CGFloat( 0.5 * M_PI ) - radian, magnitude: lecb )
-        animator.addBehavior(pushBehavior)
+        var lecb  = CGFloat(ArrowView.levelSelect() + 2)
+        pushOneBall.addBall(pushBall)
+        pushOneBall.setAngled(radian,magnitude: lecb)
+        animator.addBehavior(pushOneBall)
+        playMusicOfPush()
         collision = UICollisionBehavior(items: [self.ball1,self.ball2,self.ball3,self.ball4,self.ball5,self.ball6,self.pushBall])
         // 添加自定边界
         collision.addBoundaryWithIdentifier(PathNames.rb, forPath: UIBezierPath(rect: drawbound().lb.frame))
@@ -140,6 +169,33 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
         }
         addMarks(number)
     }
+//  设置每个球碰撞时声音,同时帮助pushBall减速
+    func collisionBehavior(behavior: UICollisionBehavior, endedContactForItem item1: UIDynamicItem, withItem item2: UIDynamicItem) {
+        if item1 as! UIButton == pushBall{
+            let it = item2 as! UIButton
+            switch it {
+            case ball1:
+                playMusicOfCollison()
+                pushOneBall.slowDown(pushBall)
+            case ball2:
+                pushOneBall.slowDown(pushBall)
+                playMusicOfCollison()
+            case ball3:
+                pushOneBall.slowDown(pushBall)
+                playMusicOfCollison()
+            case ball4:
+                pushOneBall.slowDown(pushBall)
+                playMusicOfCollison()
+            case ball5:
+                pushOneBall.slowDown(pushBall)
+                playMusicOfCollison()
+            case ball6:
+                pushOneBall.slowDown(pushBall)
+                playMusicOfCollison()
+            default: break
+            }
+        }
+    }    
     
     func dynamicAnimatorDidPause(animator: UIDynamicAnimator) {
         animator.removeAllBehaviors()
@@ -170,7 +226,7 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
         
     }
     
-//  MARK: SetAngle
+// MARK: SetAngle
 // 定义panGestureRecognizer,设置箭头的方向和能量的等级
     @IBAction func SetAngle(gesture: UIPanGestureRecognizer) {
         switch gesture.state {
@@ -194,7 +250,7 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
         }
         
     }
-
+  
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         viewAddbould()
@@ -215,17 +271,7 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func restart(sender: AnyObject) {
+    @IBAction func restart(sender: UIButton) {
         ArrowView.hidden = false
-       // view.setNeedsDisplay()
-//        updateUI()
-//        view.addSubview(ArrowView)
-//        viewDidLoad()
-//        viewDidLayoutSubviews()
-
-//        refreshController.beginRefreshing()
-//        refreshController.endRefreshing()
-        
     }
-    
 }
