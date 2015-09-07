@@ -32,6 +32,7 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     struct musicName {
         static let bmoc = "blowingMusicOfCollison"
         static let pb = "pushBlowing"
+        static let edm = "endMusic"
     }
     
 //  MARK: PathNames
@@ -252,5 +253,6 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     
     @IBAction func restart(sender: UIButton) {
         ArrowView.hidden = false
+        ArrowView.setNeedsDisplay()
     }
 }

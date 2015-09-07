@@ -11,7 +11,9 @@ import UIKit
 class loginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var name: UITextField! { didSet { name.delegate = self}}
-    @IBOutlet weak var password: UITextField! {didSet { name.delegate = self}}
+    @IBOutlet weak var imageView: UIImageView!
+    
+    var imageArry = NSMutableArray()
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder() // show the keyboard first
@@ -31,9 +33,16 @@ class loginViewController: UIViewController, UITextFieldDelegate {
             
         }
     }
-    
+//添加一个gif播放的imageView
     override func viewDidLoad() {
         super.viewDidLoad()
+        for(var i = 1 ; i <= 11 ; i++){
+            var gif = UIImage(named: "\(i)")!
+            imageArry.addObject(gif)
+        }
+        imageView.animationImages = imageArry as [AnyObject]
+        imageView.animationDuration = 2
+        imageView.startAnimating()
     }
     
 }
