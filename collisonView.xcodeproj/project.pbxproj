@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F2727881BA65E69005AD578 /* OvalLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2727841BA65E69005AD578 /* OvalLayer.swift */; };
+		2F2727891BA65E69005AD578 /* TriangleLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2727851BA65E69005AD578 /* TriangleLayer.swift */; };
+		2F27278A1BA65E69005AD578 /* RectangleLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2727861BA65E69005AD578 /* RectangleLayer.swift */; };
+		2F27278B1BA65E69005AD578 /* ArcLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2727871BA65E69005AD578 /* ArcLayer.swift */; };
+		2F27278D1BA65E80005AD578 /* HolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F27278C1BA65E80005AD578 /* HolderView.swift */; };
+		2F27278F1BA65E90005AD578 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F27278E1BA65E90005AD578 /* Colors.swift */; };
 		2F3168961B2C140E00D30EFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3168951B2C140E00D30EFE /* AppDelegate.swift */; };
 		2F3168981B2C140E00D30EFE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3168971B2C140E00D30EFE /* ViewController.swift */; };
 		2F31689B1B2C140E00D30EFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F3168991B2C140E00D30EFE /* Main.storyboard */; };
@@ -14,7 +20,6 @@
 		2F3168A01B2C140F00D30EFE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F31689E1B2C140F00D30EFE /* LaunchScreen.xib */; };
 		2F3168AC1B2C140F00D30EFE /* collisonViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3168AB1B2C140F00D30EFE /* collisonViewTests.swift */; };
 		2F72C5B01B7986D8003F5679 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F72C5AF1B7986D8003F5679 /* loginViewController.swift */; };
-		2F7BD1511B78365700F157BA /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7BD1501B78365700F157BA /* StartViewController.swift */; };
 		2F899B431B7482C500873129 /* markViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F899B421B7482C500873129 /* markViewController.swift */; };
 		2FAA23C71B947CD2000D856D /* pushBlowing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2FAA23C61B947CD2000D856D /* pushBlowing.mp3 */; };
 		2FAC23EB1B6F463700FB42DD /* PushBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAC23EA1B6F463700FB42DD /* PushBehavior.swift */; };
@@ -36,6 +41,12 @@
 /* Begin PBXFileReference section */
 		2F24FCA11B831EDA002103C7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		2F24FCA21B831EDA002103C7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		2F2727841BA65E69005AD578 /* OvalLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OvalLayer.swift; path = "../../../../Downloads/SBLoader - Starter/SBLoader/OvalLayer.swift"; sourceTree = "<group>"; };
+		2F2727851BA65E69005AD578 /* TriangleLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TriangleLayer.swift; path = "../../../../Downloads/SBLoader - Starter/SBLoader/TriangleLayer.swift"; sourceTree = "<group>"; };
+		2F2727861BA65E69005AD578 /* RectangleLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RectangleLayer.swift; path = "../../../../Downloads/SBLoader - Starter/SBLoader/RectangleLayer.swift"; sourceTree = "<group>"; };
+		2F2727871BA65E69005AD578 /* ArcLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArcLayer.swift; path = "../../../../Downloads/SBLoader - Starter/SBLoader/ArcLayer.swift"; sourceTree = "<group>"; };
+		2F27278C1BA65E80005AD578 /* HolderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HolderView.swift; path = "../../../../Downloads/SBLoader - Starter/SBLoader/HolderView.swift"; sourceTree = "<group>"; };
+		2F27278E1BA65E90005AD578 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = "../../../../Downloads/SBLoader - Starter/SBLoader/Colors.swift"; sourceTree = "<group>"; };
 		2F3168901B2C140E00D30EFE /* collisonView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = collisonView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F3168941B2C140E00D30EFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F3168951B2C140E00D30EFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,7 +58,6 @@
 		2F3168AA1B2C140F00D30EFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F3168AB1B2C140F00D30EFE /* collisonViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = collisonViewTests.swift; sourceTree = "<group>"; };
 		2F72C5AF1B7986D8003F5679 /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
-		2F7BD1501B78365700F157BA /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		2F899B421B7482C500873129 /* markViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = markViewController.swift; sourceTree = "<group>"; };
 		2FAA23C61B947CD2000D856D /* pushBlowing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pushBlowing.mp3; sourceTree = "<group>"; };
 		2FAC23EA1B6F463700FB42DD /* PushBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushBehavior.swift; sourceTree = "<group>"; };
@@ -74,6 +84,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F2727821BA65E36005AD578 /* layer */ = {
+			isa = PBXGroup;
+			children = (
+				2F2727831BA65E4C005AD578 /* views */,
+				2F27278C1BA65E80005AD578 /* HolderView.swift */,
+			);
+			name = layer;
+			sourceTree = "<group>";
+		};
+		2F2727831BA65E4C005AD578 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				2F2727841BA65E69005AD578 /* OvalLayer.swift */,
+				2F2727851BA65E69005AD578 /* TriangleLayer.swift */,
+				2F2727861BA65E69005AD578 /* RectangleLayer.swift */,
+				2F2727871BA65E69005AD578 /* ArcLayer.swift */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
 		2F3168871B2C140E00D30EFE = {
 			isa = PBXGroup;
 			children = (
@@ -95,13 +125,14 @@
 		2F3168921B2C140E00D30EFE /* collisonView */ = {
 			isa = PBXGroup;
 			children = (
+				2F2727821BA65E36005AD578 /* layer */,
 				2FF43ADE1B97D10D00F684BE /* playMusic.swift */,
 				2F3168971B2C140E00D30EFE /* ViewController.swift */,
 				2FAC23EA1B6F463700FB42DD /* PushBehavior.swift */,
+				2F27278E1BA65E90005AD578 /* Colors.swift */,
 				2F3168991B2C140E00D30EFE /* Main.storyboard */,
 				2F72C5AF1B7986D8003F5679 /* loginViewController.swift */,
 				2FCC88E51B343B0B0061533F /* arrowView.swift */,
-				2F7BD1501B78365700F157BA /* StartViewController.swift */,
 				2F899B421B7482C500873129 /* markViewController.swift */,
 				2F31689C1B2C140F00D30EFE /* Images.xcassets */,
 				2F31689E1B2C140F00D30EFE /* LaunchScreen.xib */,
@@ -240,14 +271,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F27278D1BA65E80005AD578 /* HolderView.swift in Sources */,
 				2F72C5B01B7986D8003F5679 /* loginViewController.swift in Sources */,
+				2F2727881BA65E69005AD578 /* OvalLayer.swift in Sources */,
 				2FF43ADF1B97D10D00F684BE /* playMusic.swift in Sources */,
+				2F27278A1BA65E69005AD578 /* RectangleLayer.swift in Sources */,
+				2F2727891BA65E69005AD578 /* TriangleLayer.swift in Sources */,
+				2F27278B1BA65E69005AD578 /* ArcLayer.swift in Sources */,
 				2FAC23EB1B6F463700FB42DD /* PushBehavior.swift in Sources */,
+				2F27278F1BA65E90005AD578 /* Colors.swift in Sources */,
 				2F899B431B7482C500873129 /* markViewController.swift in Sources */,
 				2FAE1EE91B36900200A32E25 /* arrowView.swift in Sources */,
 				2F3168981B2C140E00D30EFE /* ViewController.swift in Sources */,
 				2F3168961B2C140E00D30EFE /* AppDelegate.swift in Sources */,
-				2F7BD1511B78365700F157BA /* StartViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
