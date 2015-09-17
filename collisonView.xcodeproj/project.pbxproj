@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2F27278F1BA65E90005AD578 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F27278E1BA65E90005AD578 /* Colors.swift */; };
 		2F3168961B2C140E00D30EFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3168951B2C140E00D30EFE /* AppDelegate.swift */; };
 		2F3168981B2C140E00D30EFE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3168971B2C140E00D30EFE /* ViewController.swift */; };
 		2F31689B1B2C140E00D30EFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F3168991B2C140E00D30EFE /* Main.storyboard */; };
@@ -24,6 +23,7 @@
 		2FE46CDB1BAA54C4005CB4FA /* HolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE46CDA1BAA54C4005CB4FA /* HolderView.swift */; };
 		2FE46CDD1BAA54D5005CB4FA /* RectangleLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE46CDC1BAA54D5005CB4FA /* RectangleLayer.swift */; };
 		2FE46CDF1BAA54E1005CB4FA /* ArcLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE46CDE1BAA54E1005CB4FA /* ArcLayer.swift */; };
+		2FE46CE11BAA56A8005CB4FA /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE46CE01BAA56A8005CB4FA /* Colors.swift */; };
 		2FF43ADD1B97CF1400F684BE /* blowingMusicOfCollison.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2FF43ADC1B97CF1400F684BE /* blowingMusicOfCollison.mp3 */; };
 		2FF43ADF1B97D10D00F684BE /* playMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF43ADE1B97D10D00F684BE /* playMusic.swift */; };
 /* End PBXBuildFile section */
@@ -41,7 +41,6 @@
 /* Begin PBXFileReference section */
 		2F24FCA11B831EDA002103C7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		2F24FCA21B831EDA002103C7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		2F27278E1BA65E90005AD578 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = "../../../../Downloads/SBLoader - Starter/SBLoader/Colors.swift"; sourceTree = "<group>"; };
 		2F3168901B2C140E00D30EFE /* collisonView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = collisonView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F3168941B2C140E00D30EFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F3168951B2C140E00D30EFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +61,7 @@
 		2FE46CDA1BAA54C4005CB4FA /* HolderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HolderView.swift; sourceTree = "<group>"; };
 		2FE46CDC1BAA54D5005CB4FA /* RectangleLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleLayer.swift; sourceTree = "<group>"; };
 		2FE46CDE1BAA54E1005CB4FA /* ArcLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcLayer.swift; sourceTree = "<group>"; };
+		2FE46CE01BAA56A8005CB4FA /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		2FF43ADC1B97CF1400F684BE /* blowingMusicOfCollison.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = blowingMusicOfCollison.mp3; sourceTree = "<group>"; };
 		2FF43ADE1B97D10D00F684BE /* playMusic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = playMusic.swift; path = ../playMusic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -129,7 +129,7 @@
 				2FF43ADE1B97D10D00F684BE /* playMusic.swift */,
 				2F3168971B2C140E00D30EFE /* ViewController.swift */,
 				2FAC23EA1B6F463700FB42DD /* PushBehavior.swift */,
-				2F27278E1BA65E90005AD578 /* Colors.swift */,
+				2FE46CE01BAA56A8005CB4FA /* Colors.swift */,
 				2F3168991B2C140E00D30EFE /* Main.storyboard */,
 				2F72C5AF1B7986D8003F5679 /* loginViewController.swift */,
 				2FCC88E51B343B0B0061533F /* arrowView.swift */,
@@ -274,9 +274,9 @@
 				2FE46CDF1BAA54E1005CB4FA /* ArcLayer.swift in Sources */,
 				2FE46CDD1BAA54D5005CB4FA /* RectangleLayer.swift in Sources */,
 				2F72C5B01B7986D8003F5679 /* loginViewController.swift in Sources */,
+				2FE46CE11BAA56A8005CB4FA /* Colors.swift in Sources */,
 				2FF43ADF1B97D10D00F684BE /* playMusic.swift in Sources */,
 				2FAC23EB1B6F463700FB42DD /* PushBehavior.swift in Sources */,
-				2F27278F1BA65E90005AD578 /* Colors.swift in Sources */,
 				2F899B431B7482C500873129 /* markViewController.swift in Sources */,
 				2FAE1EE91B36900200A32E25 /* arrowView.swift in Sources */,
 				2F3168981B2C140E00D30EFE /* ViewController.swift in Sources */,
