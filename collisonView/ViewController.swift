@@ -93,8 +93,8 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
 //  添加pushBehavior运动
     @IBAction func push(sender: AnyObject) {
         animator.removeAllBehaviors()
-        var radian =  ArrowView.bezierPathForArrow(arrowPointChange).radian
-        var lecb  = CGFloat(ArrowView.levelSelect() + 2)
+        let radian =  ArrowView.bezierPathForArrow(arrowPointChange).radian
+        let lecb  = CGFloat(ArrowView.levelSelect() + 2)
         pushOneBall.addBall(pushBall)
         pushOneBall.setAngled(radian,magnitude: lecb)
         animator.addBehavior(pushOneBall)
@@ -112,7 +112,7 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     
 // MARK: collisionBehavior
 // 添加碰撞运动
-    func collisionBehavior(behavior: UICollisionBehavior, endedContactForItem item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying){
+    func collisionBehavior(behavior: UICollisionBehavior, endedContactForItem item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying?){
         if identifier as? String == PathNames.tb {
             let ib = item as! UIButton
             switch ib {
@@ -240,7 +240,7 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var refreshcontroller = UIRefreshControl()
+        let refreshcontroller = UIRefreshControl()
         refreshcontroller.addTarget(self.view, action: "refresh", forControlEvents: UIControlEvents())
         //view.addSubview(refreshController)
     }

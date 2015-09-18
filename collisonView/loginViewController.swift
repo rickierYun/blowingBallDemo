@@ -42,7 +42,7 @@ class loginViewController: UIViewController, UITextFieldDelegate,HolderViewDeleg
         holderViewFrame.removeFromSuperview()
         holderView.backgroundColor = Colors.blue
         
-        var label: UILabel = UILabel(frame: holderView.frame)
+        let label: UILabel = UILabel(frame: holderView.frame)
         label.textColor = Colors.white
         label.font = UIFont(name: "Party LET", size: 70.0)
         label.textAlignment = NSTextAlignment.Center
@@ -88,7 +88,7 @@ class loginViewController: UIViewController, UITextFieldDelegate,HolderViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         for(var i = 1 ; i <= 11 ; i++){
-            var gif = UIImage(named: "\(i)")!
+            let gif = UIImage(named: "\(i)")!
             imageArry.addObject(gif)
         }
         imageView.animationImages = imageArry as [AnyObject]

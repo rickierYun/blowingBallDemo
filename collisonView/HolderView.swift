@@ -28,7 +28,7 @@ class HolderView: UIView {
         backgroundColor = Colors.clear
     }
 
-    required init(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
 
@@ -62,7 +62,7 @@ class HolderView: UIView {
         layer.anchorPoint = CGPointMake(0.5, 0.6)
         
         // 应用一个CABasicAnimation类来对层做360度旋转，或者2*pi的弧度。旋转是围绕着Z轴，Z轴就是穿过屏幕，垂直于屏幕
-        var rotationAnimation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        let rotationAnimation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
         rotationAnimation.toValue = CGFloat(M_PI * 2.0)
         rotationAnimation.duration = 0.45
         rotationAnimation.removedOnCompletion = true

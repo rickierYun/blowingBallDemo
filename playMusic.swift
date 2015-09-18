@@ -17,7 +17,10 @@ class playMusic: AVAudioPlayer {
     func playMusic(sender: String){
         let musicPath = NSBundle.mainBundle().pathForResource(sender, ofType: "mp3")
         let url = NSURL(fileURLWithPath: musicPath!)
-        audioPlay = AVAudioPlayer(contentsOfURL: url, error: nil)
+//  swift 2.0 error change try
+//  不必写do ，catch try？已经可以防止出错
+        
+        audioPlay = try? AVAudioPlayer(contentsOfURL: url)
         audioPlay.numberOfLoops = 0
         audioPlay.volume = 0.5
         audioPlay.prepareToPlay()
