@@ -14,7 +14,7 @@ class loginViewController: UIViewController, UITextFieldDelegate,HolderViewDeleg
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var holderView: HolderView!
     
-    var imageArry = NSMutableArray()
+    var imageArry: [UIImage] = []
     var holderViewFrame = HolderView(frame: CGRectZero)
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -73,13 +73,13 @@ class loginViewController: UIViewController, UITextFieldDelegate,HolderViewDeleg
 //MARK: transmitNameToTitile
 //将写好的名字传送游戏界面的title
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var nation = segue.destinationViewController as? UIViewController
+        var nation = segue.destinationViewController as UIViewController
         if let navc = nation as? UINavigationController {
-            nation = navc.visibleViewController
+            nation = navc.visibleViewController!
         }
         if let loginStart = nation as? ViewController {
             if segue.identifier == "login" {
-                loginStart.titleName = name.text
+                loginStart.titleName = name.text!
             }
             
         }
@@ -89,9 +89,9 @@ class loginViewController: UIViewController, UITextFieldDelegate,HolderViewDeleg
         super.viewDidLoad()
         for(var i = 1 ; i <= 11 ; i++){
             let gif = UIImage(named: "\(i)")!
-            imageArry.addObject(gif)
+            imageArry = [gif]
         }
-        imageView.animationImages = imageArry as [AnyObject]
+        imageView.animationImages = imageArry
         imageView.animationDuration = 2
         imageView.startAnimating()
     }
