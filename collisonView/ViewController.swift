@@ -10,7 +10,7 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewDataSouce,UIDynamicAnimatorDelegate{
+class ViewController: UIViewController,UICollisionBehaviorDelegate,ArrowViewDataSouce,UIDynamicAnimatorDelegate{
     
     @IBOutlet weak var ball6: UIButton!
     @IBOutlet weak var ball5: UIButton!
@@ -29,7 +29,7 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     var markView: markViewController?
     var titleName: String = "name"
 //  定义播放音乐的名字
-    struct musicName {
+    struct MusicName {
         static let bmoc = "blowingMusicOfCollison"
         static let pb = "pushBlowing"
         static let edm = "endMusic"
@@ -57,10 +57,10 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     }
 //  MARK: arrowView
 //  初始化 ArrowView的所有数据
-    @IBOutlet weak var ArrowView: arrowView!{
+    @IBOutlet weak var arrowView: ArrowView!{
         didSet{
-            ArrowView.dataSource = self
-            ArrowView.dataSouceOfLevel = self
+            arrowView.dataSource = self
+            arrowView.dataSouceOfLevel = self
         }
     }
 
@@ -77,15 +77,15 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     }
 
     func updateUI() {
-        ArrowView?.setNeedsDisplay()
+        arrowView?.setNeedsDisplay()
         
     }
     
-    func arrowFirstState(sender: arrowView) -> Double? {
+    func arrowFirstState(sender: ArrowView) -> Double? {
         return arrowPointChange
     }
     
-    func firstLevel(sender : arrowView) -> Int? {
+    func firstLevel(sender : ArrowView) -> Int? {
         return levelChange
     }
 
@@ -93,12 +93,12 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
 //  添加pushBehavior运动
     @IBAction func push(sender: AnyObject) {
         animator.removeAllBehaviors()
-        let radian =  ArrowView.bezierPathForArrow(arrowPointChange).radian
-        let lecb  = CGFloat(ArrowView.levelSelect() + 2)
+        let radian =  arrowView.bezierPathForArrow(arrowPointChange).radian
+        let lecb  = CGFloat(arrowView.levelSelect() + 2)
         pushOneBall.addBall(pushBall)
         pushOneBall.setAngled(radian,magnitude: lecb)
         animator.addBehavior(pushOneBall)
-        audioPlay.playMusic(musicName.pb)
+        audioPlay.playMusic(MusicName.pb)
         collision = UICollisionBehavior(items: [self.ball1,self.ball2,self.ball3,self.ball4,self.ball5,self.ball6,self.pushBall])
         // 添加自定边界
         collision.addBoundaryWithIdentifier(PathNames.rb, forPath: UIBezierPath(rect: drawbound().lb.frame))
@@ -107,7 +107,7 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
         collision.translatesReferenceBoundsIntoBoundary = true
         collision.collisionDelegate = self
         animator.addBehavior(collision)
-        ArrowView.hidden = true
+        arrowView.hidden = true
     }
     
 // MARK: collisionBehavior
@@ -155,23 +155,23 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
             let it = item2 as! UIButton
             switch it {
             case ball1:
-                audioPlay.playMusic(musicName.bmoc)
+                audioPlay.playMusic(MusicName.bmoc)
                 pushOneBall.slowDown(pushBall)
             case ball2:
                 pushOneBall.slowDown(pushBall)
-                audioPlay.playMusic(musicName.bmoc)
+                audioPlay.playMusic(MusicName.bmoc)
             case ball3:
                 pushOneBall.slowDown(pushBall)
-                audioPlay.playMusic(musicName.bmoc)
+                audioPlay.playMusic(MusicName.bmoc)
             case ball4:
                 pushOneBall.slowDown(pushBall)
-                audioPlay.playMusic(musicName.bmoc)
+                audioPlay.playMusic(MusicName.bmoc)
             case ball5:
                 pushOneBall.slowDown(pushBall)
-                audioPlay.playMusic(musicName.bmoc)
+                audioPlay.playMusic(MusicName.bmoc)
             case ball6:
                 pushOneBall.slowDown(pushBall)
-                audioPlay.playMusic(musicName.bmoc)
+                audioPlay.playMusic(MusicName.bmoc)
             default: break
             }
         }
@@ -184,8 +184,8 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
 //  MARK: drawboundary
 //  绘制边界
     private func drawbound() -> (lb:UIView , rb: UIView, tb: UIView) {
-        let boundaryWithIdentifierRight = UIView(frame: CGRect(x: ArrowView.bounds.maxX/2 - 100, y: 60, width: 1, height: 1000))
-        let boundaryWithIdentifierLeft = UIView(frame: CGRect(x: ArrowView.bounds.maxX/2 + 100, y: 60, width: 1, height: 1000))
+        let boundaryWithIdentifierRight = UIView(frame: CGRect(x: arrowView.bounds.maxX/2 - 100, y: 60, width: 1, height: 1000))
+        let boundaryWithIdentifierLeft = UIView(frame: CGRect(x: arrowView.bounds.maxX/2 + 100, y: 60, width: 1, height: 1000))
         let boundaryWithIdentifierTop = UIView(frame: CGRect(x: view!.bounds.maxX/2 - 100 , y: 60, width: 200, height: 1))
        
         return (boundaryWithIdentifierRight, boundaryWithIdentifierLeft,boundaryWithIdentifierTop)
@@ -206,23 +206,23 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
         
     }
     
-// MARK: SetAngle
+// MARK: setAngle
 // 定义panGestureRecognizer,设置箭头的方向和能量的等级
-    @IBAction func SetAngle(gesture: UIPanGestureRecognizer) {
+    @IBAction func setAngle(gesture: UIPanGestureRecognizer) {
         switch gesture.state {
         case .Ended : fallthrough
         case .Changed:
-            let translation = gesture.translationInView(ArrowView)
+            let translation = gesture.translationInView(arrowView)
             let pointChange = -Double(translation.x )
             
             if pointChange != 0.0 {
                 arrowPointChange += pointChange
-                gesture.setTranslation(CGPointZero, inView: ArrowView)
+                gesture.setTranslation(CGPointZero, inView: arrowView)
             }
             let levelEnergy = -Int(translation.y/10)
             if levelEnergy != 0{
                 levelChange += levelEnergy
-                gesture.setTranslation(CGPointZero, inView: ArrowView)
+                gesture.setTranslation(CGPointZero, inView: arrowView)
             }
             
         default :break
@@ -252,7 +252,7 @@ class ViewController: UIViewController,UICollisionBehaviorDelegate,arrowViewData
     }
     
     @IBAction func restart(sender: UIButton) {
-        ArrowView.hidden = false
-        ArrowView.setNeedsDisplay()
+        arrowView.hidden = false
+        arrowView.setNeedsDisplay()
     }
 }

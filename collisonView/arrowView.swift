@@ -8,16 +8,16 @@
 
 import UIKit
 
-protocol arrowViewDataSouce : class {
-    func arrowFirstState (sender : arrowView) -> Double?
-    func firstLevel(sender: arrowView) -> Int?
+protocol ArrowViewDataSouce : class {
+    func arrowFirstState (sender : ArrowView) -> Double?
+    func firstLevel(sender: ArrowView) -> Int?
 }
 
 //MARK: arrowView
 //创建一个视图类，构造箭头和能量等级视图
 
 @IBDesignable
-class arrowView :UIView {
+class ArrowView :UIView {
     
     @IBInspectable
     var color : UIColor = UIColor.blueColor() { didSet { setNeedsDisplay()}}
@@ -30,8 +30,8 @@ class arrowView :UIView {
     var yellowColor : UIColor = UIColor.yellowColor() { didSet{ setNeedsDisplay()}}
     var organeColor : UIColor = UIColor.orangeColor() {didSet{ setNeedsDisplay()}}
     var redColor : UIColor = UIColor.redColor() {didSet{ setNeedsDisplay()}}
-    weak var dataSource : arrowViewDataSouce?
-    weak var dataSouceOfLevel : arrowViewDataSouce?
+    weak var dataSource : ArrowViewDataSouce?
+    weak var dataSouceOfLevel : ArrowViewDataSouce?
     
 //MARK: viewCenter
 //寻找本个UIview的中心点
