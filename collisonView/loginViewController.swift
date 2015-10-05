@@ -65,6 +65,19 @@ class loginViewController: UIViewController, UITextFieldDelegate,HolderViewDeleg
         holderView.addSubview(button)
     }
     
+//添加一个gif播放的imageView
+//some bugs because when the animator is loading and pictures are also loading , so the gif doesn't work
+    func playGif() {
+        for(var i = 1 ; i <= 11 ; i++){
+            let gif = UIImage(named: "\(i)")!
+            imageArry = [gif]
+        }
+        imageView.animationImages = imageArry
+        imageView.animationDuration = 2
+        imageView.startAnimating()
+    }
+
+    
     func buttonPressed(sender: UIButton!) {
         holderView.removeFromSuperview()
     }
@@ -84,21 +97,17 @@ class loginViewController: UIViewController, UITextFieldDelegate,HolderViewDeleg
             
         }
     }
-//添加一个gif播放的imageView
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        for(var i = 1 ; i <= 11 ; i++){
-            let gif = UIImage(named: "\(i)")!
-            imageArry = [gif]
-        }
-        imageView.animationImages = imageArry
-        imageView.animationDuration = 2
-        imageView.startAnimating()
+        
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         addHolderView()
+        playGif()
     }
     
+       
 }
